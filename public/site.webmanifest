@@ -1,0 +1,14 @@
+{
+  "name": "Cerrajería Arrieta 24 Horas",
+  "short_name": "Arrieta 24H",
+  "description": "Cerrajeros a domicilio 24/7 en Costa Rica.",
+  "lang": "es-CR",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0b",
+  "theme_color": "#0a0a0b",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,113 @@
+---
+import { getImage } from 'astro:assets';
+import { pillars, workPhotos } from '@/data/about';
+import { faqItems } from '@/data/faq';
+import { business, contact } from '@/data/site';
+import { getPhoneUrl, getWhatsAppUrl } from '@/utils/contact';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { TextLink } from '@/components/ui/TextLink';
+import StatCounter from '@/components/interactive/StatCounter';
+import WorkGallery, { type GalleryItem } from '@/components/interactive/WorkGallery';
+import FaqAccordion from '@/components/interactive/FaqAccordion';
+
+const gallery: GalleryItem[] = await Promise.all(
+  workPhotos.map(async (photo) => {
+    const image = await getImage({ src: photo.image, widths: [480, 760, 960], format: 'webp', quality: 72 });
+    return {
+      title: photo.title,
+      category: photo.category,
+      alt: photo.alt,
+      src: image.src,
+      srcSet: image.srcSet.attribute,
+    };
+  }),
+);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<section id="nosotros" aria-labelledby="nosotros-title">
+  <div class="container-page py-24 sm:py-32 lg:py-40">
+    <SectionHeader
+      index="07"
+      label="Nosotros"
+      titleId="nosotros-title"
+      title={`Más de ${business.yearsOfExperience} años`}
+      titleMuted="de oficio y confianza."
+      description="Somos una cerrajería profesional de trayectoria, comprometida en brindar el mejor servicio a cada cliente. Contamos con tecnología de punta y cerrajeros expertos para garantizar su seguridad."
+    />
+
+    <div class="mt-16 grid gap-14 lg:mt-24 lg:grid-cols-12 lg:items-end lg:gap-12">
+      <div data-reveal class="lg:col-span-5">
+        <StatCounter
+          client:visible
+          value={business.yearsOfExperience}
+          prefix="+"
+          className="block text-[clamp(7rem,3.5rem+13vw,15rem)] leading-[0.8] font-medium tracking-[-0.06em] tabular-nums"
+        />
+        <p class="mt-6 flex items-center gap-3 font-mono text-label text-fg-muted uppercase">
+          <span aria-hidden="true" class="h-px w-6 bg-accent"></span>
+          Años de experiencia en Costa Rica
+        </p>
+      </div>
+
+      <ul class="grid gap-px border border-line bg-line sm:grid-cols-2 lg:col-span-7">
+        {
+          pillars.map((pillar, index) => (
+            <li class="group bg-canvas">
+              <div data-reveal class="flex h-full flex-col p-6 sm:p-7" style={`--delay: ${80 + index * 70}ms`}>
+                <span class="font-mono text-label text-fg-subtle tabular-nums transition-colors duration-300 group-hover:text-accent">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 class="mt-8 text-xl font-medium tracking-[-0.02em]">{pillar.title}</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-pretty text-fg-muted">{pillar.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-24 lg:mt-32">
+      <div data-reveal class="flex flex-wrap items-end justify-between gap-4">
+        <h3 class="text-title font-medium">Algunos de nuestros trabajos</h3>
+        <p class="font-mono text-label text-fg-subtle uppercase">Fotografías reales · Costa Rica</p>
+      </div>
+      <div data-reveal class="mt-8 [--delay:120ms]">
+        <WorkGallery client:visible={{ rootMargin: '200px' }} items={gallery} />
+      </div>
+    </div>
+
+    <div id="preguntas-frecuentes" class="mt-24 grid gap-12 lg:mt-32 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-4">
+        <div data-reveal class="lg:sticky lg:top-[calc(var(--spacing-header)+2.5rem)]">
+          <h3 class="text-title font-medium">Preguntas frecuentes</h3>
+          <p class="mt-4 max-w-[24rem] text-[16px] leading-relaxed text-pretty text-fg-muted">
+            Respuestas rápidas sobre nuestros servicios, horarios y cobertura.
+          </p>
+          <div class="mt-8 border-t border-line pt-6">
+            <p class="font-mono text-label text-fg-subtle uppercase">¿Tiene otra consulta?</p>
+            <div class="mt-4 flex flex-col items-start gap-3">
+              <TextLink href={getWhatsAppUrl()} external>Escríbanos por WhatsApp</TextLink>
+              <TextLink href={getPhoneUrl()}>{`Llame al ${contact.phone.display}`}</TextLink>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal class="[--delay:100ms] lg:col-span-8">
+        <FaqAccordion client:visible={{ rootMargin: '200px' }} items={faqItems} />
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+</section>

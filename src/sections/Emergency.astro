@@ -1,0 +1,44 @@
+---
+import { contact } from '@/data/site';
+import { emergencyScenarios } from '@/data/emergencies';
+import { getPhoneUrl } from '@/utils/contact';
+import LiveClock from '@/components/interactive/LiveClock';
+import EmergencyContact from '@/components/interactive/EmergencyContact';
+
+const [prefix = '', ...localParts] = contact.phone.display.split(' ');
+const phone = {
+  href: getPhoneUrl(),
+  prefix,
+  number: localParts.join(' '),
+  display: contact.phone.display,
+};
+---
+
+<section
+  id="emergencias"
+  data-surface="accent"
+  aria-labelledby="emergencias-title"
+  class="scroll-expand bg-accent text-accent-fg selection:bg-accent-fg selection:text-accent [&_:focus-visible]:outline-accent-fg"
+>
+  <div class="container-page py-20 sm:py-28 lg:py-32">
+    <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+      <p data-reveal class="flex items-center gap-3 font-mono text-label uppercase">
+        <span>04</span>
+        <span aria-hidden="true" class="h-px w-6 bg-accent-fg/30"></span>
+        Emergencias 24/7
+      </p>
+      <div data-reveal class="[--delay:80ms]">
+        <LiveClock client:visible />
+      </div>
+    </div>
+
+    <h2 id="emergencias-title" class="mt-10 text-display font-medium text-balance lg:mt-14">
+      <span data-reveal class="block">¿Una emergencia?</span>
+      <span data-reveal class="block text-accent-fg/55 [--delay:90ms]">Estamos disponibles ahora.</span>
+    </h2>
+
+    <div data-reveal class="mt-14 [--delay:180ms] lg:mt-20">
+      <EmergencyContact client:visible scenarios={emergencyScenarios} phone={phone} />
+    </div>
+  </div>
+</section>

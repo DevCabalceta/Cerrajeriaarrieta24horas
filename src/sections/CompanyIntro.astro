@@ -1,0 +1,95 @@
+---
+import { getImage } from 'astro:assets';
+import doorLockImage from '@/assets/images/service-door-lock.jpg';
+import vehicleImage from '@/assets/images/service-vehicle.jpg';
+import gateMotorImage from '@/assets/images/service-gate-motor.jpg';
+import { TextLink } from '@/components/ui/TextLink';
+import ScrollRevealText, { type RevealSegment } from '@/components/interactive/ScrollRevealText';
+
+const chip = (src: ImageMetadata) => getImage({ src, width: 192, height: 104, fit: 'cover', format: 'webp' });
+const [doorLock, vehicle, gateMotor] = await Promise.all([chip(doorLockImage), chip(vehicleImage), chip(gateMotorImage)]);
+
+const statement: RevealSegment[] = [
+  'Más de cuatro décadas abriendo, reparando y asegurando casas',
+  { src: doorLock.src, alt: '' },
+  'y vehículos',
+  { src: vehicle.src, alt: '' },
+  'en todo Costa Rica. Y manteniendo en marcha sus portones eléctricos',
+  { src: gateMotor.src, alt: '' },
+  'a domicilio, a cualquier hora.',
+];
+
+const commitments = [
+  'Personal capacitado y certificado',
+  'Informe de cada servicio realizado',
+  'Servicio en zonas urbanas y rurales',
+];
+---
+
+<section id="empresa" aria-labelledby="empresa-title">
+  <div class="container-page py-24 sm:py-32 lg:py-40">
+    <span aria-hidden="true" data-reveal="line" class="block h-px origin-left bg-line"></span>
+
+    <div class="grid gap-y-10 pt-8 lg:grid-cols-12 lg:gap-x-12 lg:pt-10">
+      <div
+        data-reveal
+        class="flex h-fit items-center gap-3 font-mono text-label text-fg-muted uppercase lg:col-span-3 lg:pt-3"
+      >
+        <span aria-hidden="true" class="text-accent">01</span>
+        <span aria-hidden="true" class="h-px w-6 bg-line-strong"></span>
+        <h2 id="empresa-title">La empresa</h2>
+      </div>
+
+      <div class="lg:col-span-9">
+        <ScrollRevealText client:visible segments={statement} className="text-headline font-medium" />
+
+        <div class="mt-16 grid gap-14 md:grid-cols-2 md:gap-12 lg:mt-24 lg:gap-16">
+          <div data-reveal>
+            <p class="max-w-[34rem] text-[17px] leading-relaxed text-pretty text-fg-muted sm:text-lg">
+              Nuestra meta es ayudarle en todo momento: en una emergencia o cuando decida cambiar llavines, sacar copias
+              de llaves, abrir una caja fuerte o reforzar la seguridad de su casa o negocio. Trabajamos con cerrajeros
+              expertos y tecnología de punta, siempre con los mejores precios.
+            </p>
+            <TextLink href="#servicios" className="mt-8">Ver servicios</TextLink>
+          </div>
+
+          <div>
+            <p data-reveal class="font-mono text-label text-fg-subtle uppercase [--delay:80ms]">Nuestro compromiso</p>
+            <ol class="mt-5">
+              {
+                commitments.map((commitment, index) => (
+                  <li class="group relative">
+                    <span
+                      aria-hidden="true"
+                      data-reveal="line"
+                      class="absolute inset-x-0 top-0 h-px origin-left bg-line"
+                      style={`--delay: ${120 + index * 90}ms`}
+                    />
+                    <div
+                      data-reveal
+                      class="flex items-baseline gap-5 py-4 sm:py-5"
+                      style={`--delay: ${160 + index * 90}ms`}
+                    >
+                      <span class="font-mono text-label text-fg-subtle tabular-nums transition-colors duration-300 group-hover:text-accent">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span class="text-lg tracking-[-0.01em] text-fg transition-[translate] duration-500 ease-smooth group-hover:translate-x-1">
+                        {commitment}
+                      </span>
+                    </div>
+                  </li>
+                ))
+              }
+            </ol>
+            <span
+              aria-hidden="true"
+              data-reveal="line"
+              class="block h-px origin-left bg-line"
+              style={`--delay: ${120 + commitments.length * 90}ms`}
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

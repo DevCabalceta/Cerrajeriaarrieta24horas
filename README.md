@@ -1,46 +1,37 @@
-# Astro Starter Kit: Basics
+# Cerrajería Arrieta 24 Horas
 
-```sh
-npm create astro@latest -- --template basics
-```
+Landing page de [cerrajeriaarrieta24horas.com](https://cerrajeriaarrieta24horas.com/), construida con Astro, TypeScript, Tailwind CSS 4, React Islands y Motion.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Comandos
 
-## 🚀 Project Structure
+| Comando           | Acción                                          |
+| :---------------- | :---------------------------------------------- |
+| `npm install`     | Instala las dependencias                        |
+| `npm run dev`     | Servidor de desarrollo en `localhost:4321`      |
+| `npm run check`   | Verificación de tipos (`astro check`)           |
+| `npm run build`   | Verificación de tipos y build de producción     |
+| `npm run preview` | Previsualiza el build                           |
+| `npm run generate:social` | Regenera la imagen social (`og-image.jpg`) y los iconos de app |
 
-Inside of your Astro project, you'll see the following folders and files:
+## SEO y GEO
+
+- **Dominio:** `site` en `astro.config.mjs` (`https://cerrajeriaarrieta24horas.com`). Canonical, Open Graph, sitemap y Schema se derivan de él.
+- **Datos únicos:** título, descripción, contacto, cobertura, servicios y FAQ viven en `src/data/`. La página, el Schema (`StructuredData.astro`) y `llms.txt` leen de ahí, así que nunca se contradicen.
+- **Generados en el build:** `/sitemap.xml`, `/robots.txt` y `/llms.txt` (resumen para buscadores con IA).
+- **Schema.org:** `WebSite`, `WebPage`, `Locksmith` (negocio con área de servicio, sin dirección física, con catálogo de servicios y zonas) y `FAQPage`.
+
+## Estructura
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── ui/            Piezas presentacionales reutilizables (iconos, logotipo, textos animados)
+│   ├── layout/        SEO y datos estructurados
+│   └── interactive/   Islas React con Motion (navbar, efectos magnéticos, hooks)
+├── sections/          Secciones de la landing
+├── data/              Datos comerciales, contacto y navegación centralizados
+├── layouts/           Layout base
+├── pages/
+├── styles/            Tailwind y tokens del sistema visual
+└── utils/
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

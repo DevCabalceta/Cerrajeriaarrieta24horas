@@ -1,0 +1,82 @@
+---
+import { Picture } from 'astro:assets';
+import safeImage from '@/assets/images/specialty-safe.jpg';
+import { specialtyServices } from '@/data/services';
+import { business, contact } from '@/data/site';
+import { getPhoneUrl, getWhatsAppUrl } from '@/utils/contact';
+import { CtaLink } from '@/components/ui/CtaLink';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import SpecialtyCell from '@/components/ui/SpecialtyCell.astro';
+
+const [featured, ...others] = specialtyServices;
+const STAGGER = 70;
+---
+
+<section id="especialidades" aria-labelledby="especialidades-title">
+  <div class="container-page pt-12 pb-24 sm:pb-32 lg:pt-16 lg:pb-40">
+    <SectionHeader
+      index="03"
+      label="Especialidades"
+      titleId="especialidades-title"
+      title="Servicios especializados,"
+      titleMuted="hechos con precisión."
+      description={`Más allá de abrir una puerta: cajas fuertes, llaves con chip, amaestramiento y más, con la experiencia de más de ${business.yearsOfExperience} años.`}
+    />
+
+    <div class="mt-14 grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2 lg:mt-20 lg:grid-cols-12">
+      {
+        featured && (
+          <SpecialtyCell service={featured} index={0} featured class="md:col-span-2 lg:col-span-6 lg:row-span-2">
+            <Picture
+              slot="media"
+              src={safeImage}
+              alt="Caja fuerte con teclado digital y perilla de combinación mecánica"
+              formats={['avif', 'webp']}
+              widths={[480, 720, 880]}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              class="size-full object-cover brightness-90 grayscale transition-[filter,scale] duration-700 ease-smooth group-hover:scale-[1.03] group-hover:grayscale-0"
+            />
+          </SpecialtyCell>
+        )
+      }
+
+      {
+        others.map((service, position) => (
+          <SpecialtyCell
+            service={service}
+            index={position + 1}
+            delay={(position + 1) * STAGGER}
+            class={position === others.length - 1 ? 'md:col-span-2 lg:col-span-6' : 'lg:col-span-3'}
+          />
+        ))
+      }
+
+      <div class="bg-canvas md:col-span-2 lg:col-span-6">
+        <div
+          data-reveal
+          style={`--delay: ${(others.length + 1) * STAGGER}ms`}
+          class="flex h-full flex-col justify-between gap-10 p-6 sm:p-8"
+        >
+          <div>
+            <p class="font-mono text-label text-fg-subtle uppercase">¿No ve su caso?</p>
+            <p class="mt-4 max-w-[24ch] text-title font-medium text-balance">
+              Cuéntenos qué necesita y le indicamos la mejor solución.
+            </p>
+          </div>
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <CtaLink href={getWhatsAppUrl()} icon="whatsapp" external>Escribir por WhatsApp</CtaLink>
+            <CtaLink
+              href={getPhoneUrl()}
+              variant="secondary"
+              icon="phone"
+              detail={contact.phone.display}
+              ariaLabel={`Llamar al ${contact.phone.display}`}
+            >
+              Llamar
+            </CtaLink>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

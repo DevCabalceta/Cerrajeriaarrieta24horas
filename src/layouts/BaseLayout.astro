@@ -1,0 +1,43 @@
+---
+import '@/styles/global.css';
+import { Font } from 'astro:assets';
+import SEO, { type Props as SeoProps } from '@/components/layout/SEO.astro';
+import StructuredData from '@/components/layout/StructuredData.astro';
+import SiteFooter from '@/components/layout/SiteFooter.astro';
+import Navbar from '@/components/interactive/navbar/Navbar';
+
+type Props = SeoProps;
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-CR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-geist-mono" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <SEO title={title} description={description} image={image} />
+    <StructuredData />
+  </head>
+  <body id="top">
+    <a
+      href="#main"
+      class="sr-only rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-fg focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
+    >
+      Saltar al contenido
+    </a>
+    <Navbar client:load />
+    <slot />
+    <SiteFooter />
+    <script>
+      import { initReveal } from '@/utils/reveal';
+      initReveal();
+    </script>
+  </body>
+</html>

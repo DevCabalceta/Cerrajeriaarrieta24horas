@@ -1,0 +1,41 @@
+---
+import { getImage } from 'astro:assets';
+import { serviceCategories } from '@/data/services';
+import { coverage } from '@/data/site';
+import { getWhatsAppUrl } from '@/utils/contact';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import ServiceShowcase, { type ShowcaseItem } from '@/components/interactive/ServiceShowcase';
+
+const items: ShowcaseItem[] = await Promise.all(
+  serviceCategories.map(async (category) => {
+    const image = await getImage({ src: category.image, widths: [480, 800, 1120], format: 'webp', quality: 68 });
+    return {
+      id: category.id,
+      label: category.label,
+      title: category.title,
+      description: category.description,
+      services: category.services,
+      whatsappUrl: getWhatsAppUrl(category.whatsappMessage),
+      detailLink: category.detailLink,
+      image: { src: image.src, srcSet: image.srcSet.attribute, alt: category.imageAlt },
+    };
+  }),
+);
+---
+
+<section id="servicios" aria-labelledby="servicios-title">
+  <div class="container-page pt-12 pb-24 sm:pb-32 lg:pt-16 lg:pb-40">
+    <SectionHeader
+      index="02"
+      label="Servicios"
+      titleId="servicios-title"
+      title="Soluciones para cada puerta,"
+      titleMuted="llave y portón."
+      description={`Cerrajería residencial, comercial y automotriz, además de portones eléctricos. Atendemos a domicilio en ${coverage.primary.join(', ')} y todo el país.`}
+    />
+
+    <div class="mt-14 lg:mt-20">
+      <ServiceShowcase client:visible={{ rootMargin: '300px' }} items={items} />
+    </div>
+  </div>
+</section>

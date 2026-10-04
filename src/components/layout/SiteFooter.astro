@@ -1,0 +1,147 @@
+---
+import { BrandLogo } from '@/components/ui/BrandLogo';
+import { ArrowUpRightIcon, KeyMark } from '@/components/ui/icons';
+import { footerNavigation, footerServices, type FooterLink } from '@/data/navigation';
+import { business, contact, developer, social } from '@/data/site';
+import { getEmailUrl, getPhoneUrl, getWhatsAppUrl } from '@/utils/contact';
+
+interface ContactLink {
+  label: string;
+  value: string;
+  href: string;
+  external?: boolean;
+}
+
+const year = new Date().getFullYear();
+const wordmark = [...business.shortName];
+
+const contactLinks: ContactLink[] = [
+  { label: 'Teléfono', value: contact.phone.display, href: getPhoneUrl() },
+  { label: 'WhatsApp', value: 'Escribir ahora', href: getWhatsAppUrl(), external: true },
+  { label: 'Correo', value: contact.email, href: getEmailUrl() },
+  { label: 'Facebook', value: 'Cerrajería Arrieta', href: social.facebook, external: true },
+];
+
+const linkColumns: { title: string; links: readonly FooterLink[] }[] = [
+  { title: 'Navegación', links: footerNavigation },
+  { title: 'Servicios', links: footerServices },
+];
+
+const linkClass =
+  'group inline-flex items-center gap-2 text-[15px] text-fg-muted transition-colors duration-300 hover:text-fg';
+const linkMarker =
+  'h-px w-0 bg-accent transition-[width] duration-300 ease-smooth group-hover:w-3 group-focus-visible:w-3';
+---
+
+<footer aria-labelledby="footer-title" class="border-t border-line">
+  <h2 id="footer-title" class="sr-only">Enlaces e información de contacto</h2>
+
+  <div class="container-page pt-20 lg:pt-28">
+    <div class="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-12">
+      <div data-reveal class="lg:col-span-4">
+        <a href="#top" aria-label={`${business.name}, volver al inicio`} class="group -m-2 inline-flex rounded-full p-2">
+          <BrandLogo />
+        </a>
+        <p class="mt-6 max-w-[22rem] text-[15px] leading-relaxed text-pretty text-fg-muted">
+          Cerrajeros a domicilio en Costa Rica con más de {business.yearsOfExperience} años de experiencia. Toda la GAM
+          las 24 horas; el resto del país, con cita.
+        </p>
+        <p class="mt-6 flex items-center gap-2.5 font-mono text-label text-fg-muted uppercase">
+          <span aria-hidden="true" class="relative flex size-1.5">
+            <span class="absolute inset-0 animate-beacon rounded-full bg-accent"></span>
+            <span class="relative size-1.5 rounded-full bg-accent"></span>
+          </span>
+          Disponible 24/7 · Todo el año
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-3 lg:col-span-8">
+        {
+          linkColumns.map((column, columnIndex) => (
+            <nav aria-label={column.title} data-reveal style={`--delay: ${80 + columnIndex * 70}ms`}>
+              <h3 class="font-mono text-label text-fg-subtle uppercase">{column.title}</h3>
+              <ul class="mt-5 space-y-3">
+                {column.links.map((link) => (
+                  <li>
+                    <a href={link.href} class={linkClass}>
+                      <span aria-hidden="true" class={linkMarker} />
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))
+        }
+
+        <div data-reveal class="[--delay:220ms]">
+          <h3 class="font-mono text-label text-fg-subtle uppercase">Contacto</h3>
+          <address class="mt-5 space-y-4 not-italic">
+            {
+              contactLinks.map((item) => (
+                <div>
+                  <p class="font-mono text-[10px] tracking-[0.08em] text-fg-subtle uppercase">{item.label}</p>
+                  <a
+                    href={item.href}
+                    {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                    class="group mt-1 inline-flex items-center gap-1.5 text-[14px] text-fg wrap-anywhere transition-colors duration-300 hover:text-accent"
+                  >
+                    {item.value}
+                    {item.external && <span class="sr-only">(se abre en una pestaña nueva)</span>}
+                    <ArrowUpRightIcon className="size-3.5 shrink-0 text-fg-subtle transition-[translate,color] duration-300 ease-smooth group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+                  </a>
+                </div>
+              ))
+            }
+          </address>
+        </div>
+      </div>
+    </div>
+
+    <div aria-hidden="true" class="@container mt-20 lg:mt-28">
+      <div class="group/wordmark flex items-start select-none">
+        <span class="flex text-[29cqi] leading-[0.82] font-semibold tracking-[-0.06em] whitespace-nowrap text-fg">
+          {
+            wordmark.map((letter, index) => (
+              <span class="inline-block overflow-hidden pt-[0.08em] pb-[0.02em]">
+                <span
+                  data-reveal="rise"
+                  class="inline-block group-hover/wordmark:-translate-y-[0.06em]"
+                  style={`--delay: ${index * 60}ms`}
+                >
+                  {letter}
+                </span>
+              </span>
+            ))
+          }
+        </span>
+        <KeyMark className="mt-[3.5cqi] ml-[1.5cqi] size-[8cqi] shrink-0 text-accent transition-transform duration-700 ease-smooth group-hover/wordmark:rotate-x-180" />
+      </div>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col gap-3 border-t border-line pt-8 pr-20 pb-28 text-[13px] text-fg-subtle sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-8 sm:pb-10 2xl:pr-0"
+    >
+      <p>© {year} {business.name}. Todos los derechos reservados.</p>
+      <p class="hidden font-mono text-label uppercase lg:block">Cerrajeros 24/7 · Costa Rica</p>
+      <p>
+        Desarrollado por <a
+          href={developer.url}
+          target="_blank"
+          rel="noopener"
+          class="group relative inline-flex items-center gap-1 font-medium text-fg-muted transition-colors duration-300 hover:text-fg"
+        >
+          <span class="relative">
+            {developer.name}
+            <span
+              aria-hidden="true"
+              class="absolute inset-x-0 -bottom-0.5 h-px origin-right scale-x-0 bg-accent transition-transform duration-500 ease-smooth group-hover:origin-left group-hover:scale-x-100 group-focus-visible:origin-left group-focus-visible:scale-x-100"
+            ></span>
+          </span>
+          <span class="sr-only">(se abre en una pestaña nueva)</span>
+          <ArrowUpRightIcon className="size-3 transition-[translate,color] duration-300 ease-smooth group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

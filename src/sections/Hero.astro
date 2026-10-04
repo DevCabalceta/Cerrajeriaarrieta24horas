@@ -1,0 +1,136 @@
+---
+import { Picture } from 'astro:assets';
+import heroImage from '@/assets/images/hero-technician.jpg';
+import { business, contact, coverage } from '@/data/site';
+import { getPhoneUrl, getWhatsAppUrl } from '@/utils/contact';
+import { CtaLink } from '@/components/ui/CtaLink';
+import { Magnetic } from '@/components/interactive/Magnetic';
+import { PointerParallax } from '@/components/interactive/PointerParallax';
+
+const headline = ['Abrimos su puerta.', 'A cualquier hora.'];
+
+const facts = [
+  { value: '24/7', label: 'Atención todo el año' },
+  { value: `+${business.yearsOfExperience}`, label: 'Años de experiencia' },
+  { value: 'GAM', label: 'Y todo el país' },
+];
+
+const corners = [
+  'top-0 left-0 border-t border-l group-hover/media:-translate-x-1 group-hover/media:-translate-y-1',
+  'top-0 right-0 border-t border-r group-hover/media:translate-x-1 group-hover/media:-translate-y-1',
+  'bottom-0 left-0 border-b border-l group-hover/media:-translate-x-1 group-hover/media:translate-y-1',
+  'bottom-0 right-0 border-b border-r group-hover/media:translate-x-1 group-hover/media:translate-y-1',
+];
+---
+
+<section id="inicio" aria-labelledby="hero-title" class="relative">
+  <div
+    class="container-page grid gap-y-12 pt-[calc(var(--spacing-header)+2.5rem)] pb-16 sm:pt-[calc(var(--spacing-header)+4rem)] lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-10 lg:pt-[calc(var(--spacing-header)+3.5rem)] lg:pb-14"
+  >
+    <div class="lg:col-span-7">
+      <h1 id="hero-title" tabindex="-1" class="flex flex-col outline-none">
+        <span
+          class="flex animate-fade-up items-center gap-3 font-mono text-label text-fg-muted uppercase [--delay:80ms]"
+        >
+          <span aria-hidden="true" class="h-px w-6 origin-left animate-draw-x bg-accent [--delay:200ms]"></span>
+          Cerrajería 24 horas · Costa Rica
+        </span>
+        <span class="mt-6 text-display font-medium text-balance sm:mt-8 md:text-[4.25rem] lg:text-display">
+          {
+            headline.map((line, index) => (
+              <>
+                <span class="block overflow-hidden pb-[0.1em]">
+                  <span
+                    class:list={['block animate-reveal-up', index > 0 && 'text-fg-muted']}
+                    style={`--delay: ${160 + index * 90}ms`}
+                  >
+                    {line}
+                  </span>
+                </span>
+                {index < headline.length - 1 && ' '}
+              </>
+            ))
+          }
+        </span>
+      </h1>
+
+      <p
+        class="mt-6 max-w-[34rem] animate-fade-up text-[17px] leading-relaxed text-pretty text-fg-muted [--delay:380ms] sm:text-lg"
+      >
+        Cerrajeros a domicilio con más de {business.yearsOfExperience} años de experiencia. Apertura de casas, vehículos
+        y cajas fuertes, llaves con chip y portones eléctricos en {coverage.primary.join(', ')} y todo el país.
+      </p>
+
+      <div id="hero-actions" class="mt-9 flex animate-fade-up flex-col gap-3 [--delay:480ms] sm:flex-row sm:flex-wrap">
+        <Magnetic client:idle>
+          <CtaLink href={getWhatsAppUrl()} icon="whatsapp" external>Escribir por WhatsApp</CtaLink>
+        </Magnetic>
+        <CtaLink
+          href={getPhoneUrl()}
+          variant="secondary"
+          icon="phone"
+          detail={contact.phone.display}
+          ariaLabel={`Llamar al ${contact.phone.display}`}
+        >
+          Llamar
+        </CtaLink>
+      </div>
+    </div>
+
+    <figure class="lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1">
+      <div
+        class="group/media relative aspect-[4/3] animate-mask-reveal overflow-hidden bg-surface [--delay:60ms] sm:aspect-[16/10] lg:aspect-[4/5]"
+      >
+        <PointerParallax client:idle className="size-full">
+          <Picture
+            src={heroImage}
+            alt="Técnico de Cerrajería Arrieta trabajando en la cerradura de un portón de hierro"
+            formats={['avif', 'webp']}
+            widths={[480, 720, 912]}
+            sizes="(min-width: 1024px) 40vw, (min-width: 640px) 90vw, 100vw"
+            priority
+            class="size-full animate-settle object-cover object-[50%_35%] brightness-90 contrast-[1.08] grayscale transition-[filter] duration-700 ease-smooth [--delay:60ms] group-hover/media:grayscale-0"
+          />
+        </PointerParallax>
+        <span aria-hidden="true" class="pointer-events-none absolute inset-3 sm:inset-4">
+          {
+            corners.map((position) => (
+              <span
+                class:list={[
+                  'absolute size-3 border-white/70 transition-transform duration-500 ease-smooth',
+                  position,
+                ]}
+              />
+            ))
+          }
+        </span>
+      </div>
+      <figcaption
+        class="mt-3 flex animate-fade-up items-center justify-between font-mono text-label text-fg-subtle uppercase [--delay:640ms]"
+      >
+        <span>Nuestro equipo en servicio</span>
+        <span>Fig. 01</span>
+      </figcaption>
+    </figure>
+
+    <div class="relative lg:col-span-7 lg:row-start-2 lg:self-end">
+      <span aria-hidden="true" class="absolute inset-x-0 top-0 h-px origin-left animate-draw-x bg-line [--delay:560ms]"></span>
+      <dl class="grid grid-cols-3">
+        {
+          facts.map((fact, index) => (
+            <div
+              class:list={[
+                'flex animate-fade-up flex-col-reverse justify-end gap-2 pt-5 pr-3',
+                index > 0 && 'border-l border-line pl-4 sm:pl-6',
+              ]}
+              style={`--delay: ${620 + index * 70}ms`}
+            >
+              <dt class="font-mono text-label text-fg-subtle uppercase">{fact.label}</dt>
+              <dd class="text-title font-medium tabular-nums">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,123 @@
+---
+import { coverageLocations } from '@/data/coverage';
+import { gateServices, serviceCategories, specialtyServices } from '@/data/services';
+import { business, contact, coverage, seo, social } from '@/data/site';
+
+const siteUrl = `${business.url}/`;
+const ids = {
+  business: `${siteUrl}#business`,
+  website: `${siteUrl}#website`,
+  webpage: `${siteUrl}#webpage`,
+};
+
+const telephone = `+${contact.phone.countryCode}${contact.phone.number}`;
+const imageUrl = new URL(seo.image.src, siteUrl).href;
+const logoUrl = new URL(seo.logo, siteUrl).href;
+
+const openAllDay = {
+  '@type': 'OpeningHoursSpecification',
+  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  opens: '00:00',
+  closes: '23:59',
+};
+
+const offer = (name: string, description?: string) => ({
+  '@type': 'Offer',
+  itemOffered: { '@type': 'Service', name, ...(description && { description }) },
+});
+
+const offerCatalog = {
+  '@type': 'OfferCatalog',
+  name: 'Servicios de cerrajería',
+  itemListElement: [
+    ...serviceCategories.map((category) => ({
+      '@type': 'OfferCatalog',
+      name: category.label,
+      itemListElement: category.services.map((service) => offer(service)),
+    })),
+    {
+      '@type': 'OfferCatalog',
+      name: 'Servicios especializados',
+      itemListElement: specialtyServices.map((service) => offer(service.title, service.description)),
+    },
+    {
+      '@type': 'OfferCatalog',
+      name: 'Portones eléctricos',
+      itemListElement: gateServices.map((service) => offer(service.title, service.description)),
+    },
+  ],
+};
+
+/** Service-area business: no street address, coverage described by the areas it serves. */
+const areaServed = [
+  { '@type': 'AdministrativeArea', name: coverage.region },
+  ...coverageLocations.map((location) => ({
+    '@type': 'AdministrativeArea',
+    name: location.name,
+    description:
+      location.tier === 'gam' ? 'Atención a domicilio las 24 horas' : 'Servicio a domicilio con cita previa',
+  })),
+  { '@type': 'Country', name: 'Costa Rica' },
+];
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': ids.website,
+      url: siteUrl,
+      name: business.name,
+      inLanguage: seo.language,
+      publisher: { '@id': ids.business },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': ids.webpage,
+      url: siteUrl,
+      name: seo.title,
+      description: seo.description,
+      inLanguage: seo.language,
+      isPartOf: { '@id': ids.website },
+      about: { '@id': ids.business },
+      primaryImageOfPage: { '@type': 'ImageObject', url: imageUrl, width: seo.image.width, height: seo.image.height },
+    },
+    {
+      '@type': 'Locksmith',
+      '@id': ids.business,
+      name: business.name,
+      alternateName: `Cerrajería ${business.shortName}`,
+      url: siteUrl,
+      logo: logoUrl,
+      image: [imageUrl, logoUrl],
+      description: seo.description,
+      telephone,
+      email: contact.email,
+      sameAs: [social.facebook],
+      address: { '@type': 'PostalAddress', addressCountry: 'CR' },
+      areaServed,
+      openingHoursSpecification: openAllDay,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone,
+        email: contact.email,
+        contactType: 'customer service',
+        areaServed: 'CR',
+        availableLanguage: ['Spanish'],
+        hoursAvailable: openAllDay,
+      },
+      knowsLanguage: 'es',
+      knowsAbout: [
+        'Cerrajería residencial',
+        'Cerrajería comercial',
+        'Cerrajería automotriz',
+        ...specialtyServices.map((service) => service.title),
+        'Portones eléctricos',
+      ],
+      hasOfferCatalog: offerCatalog,
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(graph)} />

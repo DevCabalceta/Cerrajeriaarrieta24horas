@@ -1,0 +1,51 @@
+---
+import { costaRicaOutline, coverageLocations, gamAxis } from '@/data/coverage';
+import { buildDotGrid, distanceToSegment, mapSize, project } from '@/utils/geo';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import CoverageSimulator, { type MappedLocation } from '@/components/interactive/CoverageSimulator';
+
+const DOT_STEP = 0.06;
+const DOT_RADIUS = 2.4;
+
+/** Draws every dot as a subpath so the whole map is a single lightweight <path>. */
+const toDotPath = (points: { x: number; y: number }[]) =>
+  points
+    .map(
+      ({ x, y }) =>
+        `M${(x - DOT_RADIUS).toFixed(1)} ${y.toFixed(1)}a${DOT_RADIUS} ${DOT_RADIUS} 0 1 0 ${DOT_RADIUS * 2} 0a${DOT_RADIUS} ${DOT_RADIUS} 0 1 0 ${-DOT_RADIUS * 2} 0`,
+    )
+    .join('');
+
+const dots = buildDotGrid(costaRicaOutline, DOT_STEP);
+const isGam = (dot: (typeof dots)[number]) => distanceToSegment(dot, gamAxis.from, gamAxis.to) < gamAxis.radius;
+const countryPath = toDotPath(dots.filter((dot) => !isGam(dot)).map(project));
+const gamPath = toDotPath(dots.filter(isGam).map(project));
+
+const locations: MappedLocation[] = coverageLocations.map((location) => ({
+  ...location,
+  point: project(location.position),
+}));
+const origin = locations.find((location) => location.id === 'san-jose')?.point ?? project(gamAxis.from);
+---
+
+<section id="cobertura" aria-labelledby="cobertura-title">
+  <div class="container-page py-24 sm:py-32 lg:py-40">
+    <SectionHeader
+      index="06"
+      label="Cobertura"
+      titleId="cobertura-title"
+      title="Toda la GAM, 24/7."
+      titleMuted="El resto del país, con cita."
+      description="Atendemos a domicilio en San José, Heredia, Alajuela y Cartago a cualquier hora. En Guanacaste, Puntarenas, Limón y otras zonas del país coordinamos su servicio con cita previa."
+    />
+
+    <div data-reveal class="mt-14 [--delay:120ms] lg:mt-20">
+      <CoverageSimulator client:visible={{ rootMargin: '200px' }} locations={locations} origin={origin} size={mapSize}>
+        <svg viewBox={`0 0 ${mapSize.width} ${mapSize.height}`} aria-hidden="true" class="block h-auto w-full">
+          <path d={countryPath} class="fill-fg/15" />
+          <path d={gamPath} class="fill-accent" />
+        </svg>
+      </CoverageSimulator>
+    </div>
+  </div>
+</section>

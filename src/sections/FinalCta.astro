@@ -1,0 +1,93 @@
+---
+import { contact } from '@/data/site';
+import { getEmailUrl, getPhoneUrl, getWhatsAppUrl } from '@/utils/contact';
+import { CtaLink } from '@/components/ui/CtaLink';
+import { ArrowUpRightIcon } from '@/components/ui/icons';
+import SlideToContact from '@/components/interactive/SlideToContact';
+
+interface ContactRow {
+  label: string;
+  value: string;
+  href?: string;
+  external?: boolean;
+}
+
+const rows: ContactRow[] = [
+  { label: 'Teléfono', value: contact.phone.display, href: getPhoneUrl() },
+  { label: 'WhatsApp', value: 'Escríbanos ahora', href: getWhatsAppUrl(), external: true },
+  { label: 'Correo', value: contact.email, href: getEmailUrl() },
+  { label: 'Horario', value: '24 horas · 7 días · todo el año' },
+  { label: 'Cobertura', value: 'Toda la GAM 24/7 · resto del país con cita', href: '#cobertura' },
+];
+---
+
+<section id="contacto" aria-labelledby="contacto-title">
+  <div class="container-page py-24 sm:py-32 lg:py-40">
+    <span aria-hidden="true" data-reveal="line" class="block h-px origin-left bg-line"></span>
+
+    <p data-reveal class="mt-8 flex items-center gap-3 font-mono text-label text-fg-muted uppercase lg:mt-10">
+      <span class="text-accent">08</span>
+      <span aria-hidden="true" class="h-px w-6 bg-line-strong"></span>
+      Contacto
+    </p>
+
+    <h2 id="contacto-title" class="mt-10 text-display font-medium text-balance lg:mt-14">
+      <span data-reveal class="block">¿Necesita un cerrajero?</span>
+      <span data-reveal class="block text-fg-muted [--delay:90ms]">Estamos a un mensaje.</span>
+    </h2>
+
+    <div class="mt-12 grid grid-cols-1 gap-16 lg:mt-16 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-7">
+        <p data-reveal class="max-w-[34rem] text-[17px] leading-relaxed text-pretty text-fg-muted [--delay:180ms] sm:text-lg">
+          Escríbanos por WhatsApp o llámenos. Atendemos toda la GAM las 24 horas y el resto del país con cita.
+        </p>
+
+        <div data-reveal class="mt-10 [--delay:260ms]">
+          <SlideToContact client:visible href={getWhatsAppUrl()} label="Deslice para escribirnos" />
+          <p class="mt-4 font-mono text-label text-fg-subtle uppercase">O toque la llave · Respondemos por WhatsApp</p>
+        </div>
+
+        <div data-reveal class="mt-8 [--delay:320ms]">
+          <CtaLink
+            href={getPhoneUrl()}
+            variant="secondary"
+            icon="phone"
+            detail={contact.phone.display}
+            ariaLabel={`Llamar al ${contact.phone.display}`}
+            className="w-fit"
+          >
+            Llamar ahora
+          </CtaLink>
+        </div>
+      </div>
+
+      <div class="self-end lg:col-span-5">
+        <dl>
+          {
+            rows.map((row, index) => (
+              <div data-reveal class="border-t border-line py-5" style={`--delay: ${120 + index * 70}ms`}>
+                <dt class="font-mono text-label text-fg-subtle uppercase">{row.label}</dt>
+                <dd class="mt-2">
+                  {row.href ? (
+                    <a
+                      href={row.href}
+                      {...(row.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                      class="group inline-flex items-center gap-2 text-lg font-medium tracking-[-0.015em] wrap-anywhere transition-colors duration-300 hover:text-accent"
+                    >
+                      {row.value}
+                      {row.external && <span class="sr-only">(se abre en una pestaña nueva)</span>}
+                      <ArrowUpRightIcon className="size-4 shrink-0 text-fg-subtle transition-[translate,color] duration-300 ease-smooth group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+                    </a>
+                  ) : (
+                    <span class="text-lg font-medium tracking-[-0.015em]">{row.value}</span>
+                  )}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+        <span aria-hidden="true" data-reveal="line" class="block h-px origin-left bg-line [--delay:460ms]"></span>
+      </div>
+    </div>
+  </div>
+</section>

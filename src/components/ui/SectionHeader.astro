@@ -1,0 +1,38 @@
+---
+interface Props {
+  index: string;
+  label: string;
+  titleId: string;
+  title: string;
+  /** Second line of the title, rendered in the muted tone. */
+  titleMuted?: string;
+  description?: string;
+}
+
+const { index, label, titleId, title, titleMuted, description } = Astro.props;
+---
+
+<div class="grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
+  <p data-reveal class="flex h-fit items-center gap-3 font-mono text-label text-fg-muted uppercase lg:col-span-3 lg:pt-3">
+    <span class="text-accent">{index}</span>
+    <span aria-hidden="true" class="h-px w-6 bg-line-strong"></span>
+    {label}
+  </p>
+
+  <div class="lg:col-span-9">
+    <h2 id={titleId} class="text-headline font-medium text-balance">
+      <span data-reveal class="block">{title}</span>
+      {titleMuted && <span data-reveal class="block text-fg-muted [--delay:90ms]">{titleMuted}</span>}
+    </h2>
+    {
+      description && (
+        <p
+          data-reveal
+          class="mt-6 max-w-[38rem] text-[17px] leading-relaxed text-pretty text-fg-muted [--delay:180ms] sm:text-lg"
+        >
+          {description}
+        </p>
+      )
+    }
+  </div>
+</div>
