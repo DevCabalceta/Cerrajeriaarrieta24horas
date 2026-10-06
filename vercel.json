@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:sitemap(sitemap_index|post-sitemap|page-sitemap|dt_portfolio-sitemap|category-sitemap|post_tag-sitemap|author-sitemap).xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(apertura-de-puertas-de-emergencia|asistencia-cerrajera-urgente|cambio-de-cerraduras-de-emergencia|cambio-de-cerraduras-urgentes|cambio-rapido-de-cerraduras|cerrajeria-de-emergencia|cerrajero-24-horas|cerrajero-disponible-24-horas|cerrajero-para-apertura-inmediata|cerrajero-urgente|la-importancia-de-un-cerrajero-24-horas|servicio-de-cerrajeria-rapida|servicio-urgente-de-cerrajeria|solucion-para-puertas-trabadas|soluciones-rapidas-en-cerrajeria){/}?",
+      "destination": "/#emergencias",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(apertura-de-cajas-fuertes|caja-fuerte-digital-o-mecanica|cajas-fuertes-contra-incendios|cambio-de-combinaciones|cerrajero-especializado-en-cajas-fuertes|cerrajero-para-cajas-fuertes|como-elegir-la-caja-fuerte-perfecta|consejos-de-seguridad-para-el-uso-de-cajas-fuertes-en-casa|duplicado-de-llaves|extraccion-de-llaves-atoradas|extraccion-de-llaves-quebradas|instalacion-de-cajas-fuertes-en-costa-rica|las-5-cajas-fuertes-mas-seguras-del-mercado-en-2024|las-mejores-cajas-fuertes-para-negocios-en-costa-rica|mantenimiento-y-cuidado-de-tu-caja-fuerte-tips-esenciales|por-que-necesitas-una-caja-fuerte-en-tu-hogar-u-oficina|que-seguridad-tiene-una-caja-fuerte|tipos-de-cajas-fuertes-y-sus-usos){/}?",
+      "destination": "/#especialidades",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(cerrajero-para-portones-electricos|instalacion-de-motores-de-porton|mantenimiento-de-portones-automaticos){/}?",
+      "destination": "/#portones",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(cerrajero-a-domicilio|cerrajero-profesional-a-domicilio){/}?",
+      "destination": "/#cobertura",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(apertura-de-cerraduras|apertura-de-cerraduras-electronicas|apertura-de-vehiculos|apertura-profesional-de-cerraduras|cerraduras-de-seguridad|cerraduras-doble-paso|cerrajero-especializado-en-puertas-blindadas|instalacion-de-cerraduras-biometricas|instalacion-de-cerraduras-de-seguridad|instalacion-de-cerraduras-inteligentes|instalacion-para-cerraduras-inteligentes|mantenimiento-de-cerraduras-electronicas|reemplazo-de-cerraduras-antiguas|reparacion-de-cerraduras|reparacion-de-cerraduras-de-seguridad|reparacion-de-sistemas-de-acceso|servicio-de-cerrajeria-residencial|servicio-profesional-de-cerrajeria){/}?",
+      "destination": "/#servicios",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(como-nos-puede-ayudar-un-buen-cerrajero|consejos-para-evitar-cerrajeros-fraudulentos|cerrajeros-de-emergencia-que-preguntar-antes-de-contratar-un-cerrajero|la-evolucion-de-la-cerrajeria|todo-lo-que-los-cerrajeros-pueden-hacer-por-su-seguridad){/}?",
+      "destination": "/#nosotros",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(6-tipos-de-cerraduras-mas-utilizadas|beneficios-de-usar-cerraduras-doble-paso-en-tu-hogar|cerraduras-doble-paso-inteligentes-innovacion-y-seguridad-en-2024|cerraduras-doble-paso-seguridad-adicional-para-tu-negocio|como-actuar-si-se-pierden-las-llaves-de-casa|como-evitar-robos-en-mis-vacaciones|como-mantener-y-lubricar-cerraduras-doble-paso|como-renovar-las-puertas-cambiando-los-picaportes|como-reparar-el-picaporte-de-cierre-de-la-venta|como-se-hace-la-instalacion-de-cerraduras-doble-paso|como-te-pueden-robar-por-medio-de-bumping|comparativa-de-cerraduras-doble-paso-y-cerraduras-convencionales|conceptos-basicos-de-cerraduras-que-deberias-saber|consejos-para-mantener-cerraduras-en-buen-estado|guia-para-elegir-la-mejor-cerradura-doble-paso-para-tu-puerta|las-marcas-mas-confiables-de-cerraduras-doble-paso-en-el-mercado|problemas-comunes-con-cerraduras-doble-paso|que-son-las-cerraduras-doble-paso-y-como-funcionan){/}?",
+      "destination": "/#servicios",
+      "statusCode": 301
+    },
+    {
+      "source": "/:section(tag|category|author)/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:slug(blog|feed|comments/feed|pagina-ejemplo-2|sample-page){/}?",
+      "destination": "/",
+      "statusCode": 301
+    }
+  ]
+}
