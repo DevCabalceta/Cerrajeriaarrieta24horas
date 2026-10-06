@@ -42,7 +42,7 @@
       "statusCode": 301
     },
     {
-      "source": "/:section(tag|category|author)/:path*",
+      "source": "/:section(tag|category|author)/:path(.*)",
       "destination": "/",
       "statusCode": 301
     },
