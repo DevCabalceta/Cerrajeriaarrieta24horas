@@ -438,6 +438,12 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - "Vista de página (Carga de página cerrajeriaarrieta24horas.com/)" pasada a **secundaria**. Las acciones viejas de Smart campaign / Business profile se dejaron como estaban (son de Google y no se pueden editar).
 - No se activó la fuente "Conversiones de llamadas telefónicas" (no hay números de desvío en Costa Rica).
 
+#### GA4 (2026-11-22)
+
+- Cuenta GA **"Cerrajería Arrieta 24 Horas"** (ID 417142484), propiedad **"cerrajeriaarrieta24horas.com"** (ID 565368990), Costa Rica GMT-6, USD.
+- Flujo web **"Sitio web Arrieta"** (`https://cerrajeriaarrieta24horas.com`, ID 16393965447) → **ID de medición `G-X9YEC5K08W`**. Medición mejorada activa (incluye clics de salida). GA creó además la etiqueta de Google `GTM-P4RLFKQN` asociada al flujo (no es el contenedor de GTM; no usarla en el sitio).
+- **Vinculado con Google Ads 708-414-4545** (publicidad personalizada y etiquetado automático activos, valores por defecto). Correos promocionales de GA desmarcados.
+
 #### Punto de reanudación (pausa del 2026-11-22)
 
 Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Analytics y todo lo demás, **por pasos y en cada paso commit y push**".
@@ -445,8 +451,8 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
 - Hecho: presupuesto USD 20/día + zonas (commit `f50dcd6`), paso 4 conversiones (commit `166a07a`), ajustes de puja por provincia SJ/Heredia +35 %, Alajuela +27 %, resto +3 %.
 - **GA4 (en curso):** el dueño aceptó los Términos de Google Analytics el 2026-11-22. Creada la cuenta **"Cerrajería Arrieta 24 Horas"** con la propiedad **"cerrajeriaarrieta24horas.com"** (zona horaria Costa Rica GMT-6, USD, sector "Casa y jardín", tamaño "Pequeña", objetivos "Generar oportunidades de venta" + "Conocer el tráfico web"; opciones de compartir datos **desmarcadas**). El asistente quedó en el paso 5 "Comenzar a recoger datos": **falta crear el flujo de datos Web** (`https://cerrajeriaarrieta24horas.com`) y anotar el **ID de medición `G-…`**. No instalar la etiqueta que propone GA directamente: va por GTM.
 - **Siguiente, en orden:**
-  1. GA4: crear el flujo Web → anotar `G-…` aquí → (opcional) vincular GA4 con Google Ads 708-414-4545 → commit/push de la documentación.
-  2. **Paso 5, GTM:** crear cuenta/contenedor web (el dueño debe aceptar o autorizar los Términos de GTM) con: etiqueta de Google `G-…` (todas las páginas), etiqueta de Google `AW-10779849723`, Vinculador de conversiones, conversión de Ads "Clic en WhatsApp (sitio)" (`V4V5CM-dl70dEPvnnZQo`) con activador Click URL contiene `wa.me`, conversión "Clic en llamar (sitio)" (`AEvSCMqel70dEPvnnZQo`) con activador Click URL contiene `tel:`, y eventos GA4 `whatsapp_click` / `phone_click` con los mismos activadores (marcarlos como eventos clave en GA4). Publicar → anotar `GTM-…` → commit/push.
+  1. ~~GA4: flujo Web + vínculo con Ads~~ — hecho, ver "GA4 (2026-11-22)".
+  2. **Paso 5, GTM:** crear cuenta/contenedor web (el dueño debe aceptar o autorizar los Términos de GTM) con: etiqueta de Google `G-X9YEC5K08W` (todas las páginas), etiqueta de Google `AW-10779849723`, Vinculador de conversiones, conversión de Ads "Clic en WhatsApp (sitio)" (`V4V5CM-dl70dEPvnnZQo`) con activador Click URL contiene `wa.me`, conversión "Clic en llamar (sitio)" (`AEvSCMqel70dEPvnnZQo`) con activador Click URL contiene `tel:`, y eventos GA4 `whatsapp_click` / `phone_click` con los mismos activadores (marcarlos como eventos clave en GA4). Publicar → anotar `GTM-…` → commit/push.
   3. **Paso 6, sitio:** ID de GTM centralizado en `src/data/` y snippet en `src/layouts/BaseLayout.astro` (head + noscript). `npm run build`; probar en Chrome headless que cada botón dispare solo su etiqueta → commit/push.
   4. Después: el dueño recarga saldo (quedan USD 24,39) y activa la campaña.
 
