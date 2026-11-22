@@ -15,7 +15,7 @@ export const contact = {
     number: '50672041289',
     defaultMessage: 'Hola, quiero más información sobre sus servicios de cerrajería.',
   },
-  email: 'servicioalcliente@cerrajeriaarrieta24horas.com',
+  email: 'pamelac2398@gmail.com',
 } as const;
 
 export const social = {
