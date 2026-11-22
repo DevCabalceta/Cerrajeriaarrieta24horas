@@ -410,7 +410,8 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - [x] Paso 2 — Search Console (2026-10-25; no había sitemaps viejos que quitar)
 - [ ] Paso 3 — SEO on-page
 - [x] Paso 4 — Conversiones en Google Ads (2026-11-22)
-- [~] Pasos 5–6 — GTM + GA4 y sitio (**en pausa 2026-11-22**, ver "Punto de reanudación")
+- [x] Paso 5 — GA4 + GTM publicados (2026-11-22)
+- [ ] Paso 6 — Instalar GTM en el sitio y probar
 - [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
 - [ ] Paso 10 — Perfil de Negocio
 - [ ] Paso 11 — Redes
@@ -444,6 +445,15 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - Flujo web **"Sitio web Arrieta"** (`https://cerrajeriaarrieta24horas.com`, ID 16393965447) → **ID de medición `G-X9YEC5K08W`**. Medición mejorada activa (incluye clics de salida). GA creó además la etiqueta de Google `GTM-P4RLFKQN` asociada al flujo (no es el contenedor de GTM; no usarla en el sitio).
 - **Vinculado con Google Ads 708-414-4545** (publicidad personalizada y etiquetado automático activos, valores por defecto). Correos promocionales de GA desmarcados.
 
+#### Google Tag Manager (paso 5, 2026-11-22)
+
+- El dueño aceptó los Términos de GTM. Cuenta **"Cerrajería Arrieta 24 Horas"** (ID 6407200081), contenedor web **"cerrajeriaarrieta24horas.com"** = **`GTM-WNPN8FKS`** (ID 288231409). Sin compartir datos anónimos.
+- **Publicada la versión 2** ("v1 - GA4 + Google Ads (WhatsApp y llamar)"), importada desde JSON y con los filtros de los activadores puestos a mano:
+  - Etiquetas en All Pages: `Google tag - GA4` (`G-X9YEC5K08W`), `Google tag - Google Ads` (`AW-10779849723`), `Vinculador de conversiones`.
+  - `Ads - Clic en WhatsApp (sitio)` (10779849723 / `V4V5CM-dl70dEPvnnZQo`) y `GA4 - whatsapp_click` (parámetro `link_url` = Click URL) → activador **Clic - WhatsApp (wa.me)**: Solo enlaces, Click URL contiene `wa.me`.
+  - `Ads - Clic en llamar (sitio)` (10779849723 / `AEvSCMqel70dEPvnnZQo`) y `GA4 - phone_click` → activador **Clic - Llamar (tel)**: Solo enlaces, Click URL contiene `tel:`.
+- El nombre de un activador no puede llevar `:` (la importación falla con "The name contains invalid character").
+
 #### Punto de reanudación (pausa del 2026-11-22)
 
 Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Analytics y todo lo demás, **por pasos y en cada paso commit y push**".
@@ -452,7 +462,7 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
 - **GA4 (en curso):** el dueño aceptó los Términos de Google Analytics el 2026-11-22. Creada la cuenta **"Cerrajería Arrieta 24 Horas"** con la propiedad **"cerrajeriaarrieta24horas.com"** (zona horaria Costa Rica GMT-6, USD, sector "Casa y jardín", tamaño "Pequeña", objetivos "Generar oportunidades de venta" + "Conocer el tráfico web"; opciones de compartir datos **desmarcadas**). El asistente quedó en el paso 5 "Comenzar a recoger datos": **falta crear el flujo de datos Web** (`https://cerrajeriaarrieta24horas.com`) y anotar el **ID de medición `G-…`**. No instalar la etiqueta que propone GA directamente: va por GTM.
 - **Siguiente, en orden:**
   1. ~~GA4: flujo Web + vínculo con Ads~~ — hecho, ver "GA4 (2026-11-22)".
-  2. **Paso 5, GTM:** crear cuenta/contenedor web (el dueño debe aceptar o autorizar los Términos de GTM) con: etiqueta de Google `G-X9YEC5K08W` (todas las páginas), etiqueta de Google `AW-10779849723`, Vinculador de conversiones, conversión de Ads "Clic en WhatsApp (sitio)" (`V4V5CM-dl70dEPvnnZQo`) con activador Click URL contiene `wa.me`, conversión "Clic en llamar (sitio)" (`AEvSCMqel70dEPvnnZQo`) con activador Click URL contiene `tel:`, y eventos GA4 `whatsapp_click` / `phone_click` con los mismos activadores (marcarlos como eventos clave en GA4). Publicar → anotar `GTM-…` → commit/push.
+  2. ~~Paso 5, GTM~~ — hecho, ver "Google Tag Manager (paso 5)". Pendiente: marcar `whatsapp_click` y `phone_click` como eventos clave en GA4.
   3. **Paso 6, sitio:** ID de GTM centralizado en `src/data/` y snippet en `src/layouts/BaseLayout.astro` (head + noscript). `npm run build`; probar en Chrome headless que cada botón dispare solo su etiqueta → commit/push.
   4. Después: el dueño recarga saldo (quedan USD 24,39) y activa la campaña.
 
