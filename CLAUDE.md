@@ -413,7 +413,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - [x] Paso 5 — GA4 + GTM publicados (2026-11-22)
 - [x] Paso 6 — GTM instalado en el sitio y probado (2026-11-22)
 - [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
-- [ ] Paso 10 — Perfil de Negocio
+- [x] Paso 10 — Perfil de Negocio (2026-11-22; falta decisión del dueño sobre el nombre)
 - [ ] Paso 11 — Redes
 - [ ] Paso 12 — Documentación y fecha de revisión
 
@@ -477,6 +477,20 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
 - Volúmenes del Planificador (Costa Rica, todos los idiomas, nov-2025 → oct-2026, promedio mensual): cerrajería cerca de mí 5.400 · cerrajería 2.900 · portones eléctricos 720 · cerrajería heredia 480 · cerrajería san josé 480 · cerrajero 480 · cerrajería alajuela 390 · cerrajería 24 horas 320 · cerrajería cartago 320 · cerrajería costa rica 320 · motores para portones eléctricos 210 · cerrajería a domicilio 140 · apertura de carros 90 · copia de llaves 90 · reparación de portones eléctricos 90 · cerrajero heredia 90 · cerrajería automotriz 70 · mantenimiento de portones eléctricos 40 · copia de llave con chip 30 · llaves con chip 20 · apertura de cajas fuertes / abrir caja fuerte 10 · "rejas automáticas" ≈ 0 (en el sitio se usa "portones eléctricos", que es lo que se busca). Plan guardado en el Planificador ("Plan del nov 22, 2026").
 - Cambios (sin tocar el diseño): título → **"Cerrajería 24 Horas a Domicilio en Costa Rica | Arrieta"** (55 caracteres); descripción → **"Cerrajería a domicilio 24/7 en San José, Heredia, Alajuela y Cartago: apertura de casas y carros, cajas fuertes, llaves con chip y portones eléctricos."** (151); Hero "casas, vehículos" → "casas, **carros**"; servicio automotriz "Apertura de vehículos" → "**Apertura de carros**"; portones "Motores" → "**Motores para portones**" con descripción "motores para portones eléctricos…"; JSON-LD `OfferCatalog` sin el "Portones eléctricos" duplicado (la categoría usa los servicios detallados de portones).
 - "cerrajería cerca de mí" (la búsqueda más grande) depende sobre todo del Perfil de Negocio y el mapa → paso 10. El siguiente salto de SEO es crear páginas por zona/servicio (Heredia, San José, Alajuela, Cartago, portones eléctricos) — requiere aprobación de diseño.
+
+#### Perfil de Negocio (paso 10, 2026-11-22)
+
+- Perfil verificado, ID de tienda 08143462154185464434, sin ubicación pública (solo servicio a domicilio), cuenta del dueño. **Personas y acceso:** solo el dueño (propietario principal). Las 2 reseñas (5★, Carolina Calvo y Roca y Carbón) ya estaban respondidas.
+- Cambios (algunos quedan "pendientes de revisión" de Google hasta 10 min – 1 día):
+  - **Descripción** (748/750, ya publicada): "Cerrajería Arrieta 24 Horas es una cerrajería a domicilio con más de 40 años de experiencia en Costa Rica. Atendemos las 24 horas… San José, Heredia, Alajuela y Cartago; en el resto del país… con cita previa…" (solo datos del sitio). Antes: "Servicio de Cerrajería 24 Horas los 365 días del año".
+  - **Sitio web** → `https://cerrajeriaarrieta24horas.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp`.
+  - **Facebook** agregado en perfiles de redes sociales.
+  - **Áreas de servicio**: antes solo "Escazú"; ahora provincias de **San José, Heredia, Alajuela y Cartago** (+ Escazú).
+  - **Categorías adicionales**: "Servicio de duplicación de llaves" y "Cerrajero de emergencia" (principal sigue "Cerrajero"). Se descartaron categorías de tiendas/fábricas de puertas por no describir el negocio.
+  - **Servicios**: + Instalación, apertura y reparación de cerraduras de cajas de seguridad; Instalación de cerraduras; Reconfiguración de cerraduras; Reparación de cerraduras y afines; Reprogramación de llave digital y remota para automóviles; y personalizados: Extracción de llaves quebradas; Amaestramiento de cerraduras y candados; Mantenimiento y reparación de portones eléctricos; Venta e instalación de motores para portones eléctricos; Venta y programación de controles para portones; Copias de todo tipo de llaves, con o sin muestra.
+  - Horario: ya era 24 h todos los días (sin cambios). Aviso "Google actualizó tus opciones de mensajería" **no aceptado** (decisión del dueño).
+- **Pendiente (decisión del dueño):** el nombre del perfil es "Cerrajería Arrieta 24 Horas *Servicio a domicilio*". Las directrices de Google piden el nombre real del negocio sin descriptores; agregar palabras puede causar suspensión. Recomendación: cambiarlo a "Cerrajería Arrieta 24 Horas" (como en el sitio), sabiendo que un cambio de nombre puede pedir **reverificación**. No se tocó.
+- Sugerido: subir fotos reales de trabajos (el perfil casi no tiene) y pedir reseñas con el enlace "Consigue más opiniones".
 
 #### Auditoría del sitio (2026-11-21)
 
