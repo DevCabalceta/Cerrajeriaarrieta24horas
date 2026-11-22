@@ -53,7 +53,7 @@ export const serviceCategories: readonly ServiceCategory[] = [
     title: 'Su vehículo, sin contratiempos.',
     description: 'Aperturas para diversos tipos de autos y llaves listas para usar, a domicilio y a cualquier hora.',
     services: [
-      'Apertura de vehículos',
+      'Apertura de carros',
       'Copias y programación de llaves con chip',
       'Venta de controles, carcasas y forros',
     ],
@@ -148,8 +148,8 @@ export const gateServices: readonly GateService[] = [
     description: 'Mantenimiento de portones y motores eléctricos para alargar su vida útil y evitar fallas.',
   },
   {
-    title: 'Motores',
-    description: 'Venta e instalación de motores de cremallera, cadena y pistones.',
+    title: 'Motores para portones',
+    description: 'Venta e instalación de motores para portones eléctricos: de cremallera, cadena y pistones.',
   },
   {
     title: 'Controles',

@@ -408,7 +408,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 
 - [x] Paso 1 — Auditoría (sitio y Google Ads, 2026-11-21)
 - [x] Paso 2 — Search Console (2026-10-25; no había sitemaps viejos que quitar)
-- [ ] Paso 3 — SEO on-page
+- [x] Paso 3 — SEO on-page (2026-11-22)
 - [x] Paso 4 — Conversiones en Google Ads (2026-11-22)
 - [x] Paso 5 — GA4 + GTM publicados (2026-11-22)
 - [x] Paso 6 — GTM instalado en el sitio y probado (2026-11-22)
@@ -471,6 +471,12 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
   2. ~~Paso 5, GTM~~ — hecho, ver "Google Tag Manager (paso 5)". Pendiente: marcar `whatsapp_click` y `phone_click` como eventos clave en GA4.
   3. ~~Paso 6, sitio~~ — hecho, ver "Sitio (paso 6)". Pendiente: marcar `whatsapp_click` y `phone_click` como **eventos clave** en GA4 (Administrar → Eventos → estrella) cuando aparezcan tras los primeros clics reales (24–48 h).
   4. Después: el dueño recarga saldo (quedan USD 24,39) y activa la campaña.
+
+#### SEO on-page (paso 3, 2026-11-22)
+
+- Volúmenes del Planificador (Costa Rica, todos los idiomas, nov-2025 → oct-2026, promedio mensual): cerrajería cerca de mí 5.400 · cerrajería 2.900 · portones eléctricos 720 · cerrajería heredia 480 · cerrajería san josé 480 · cerrajero 480 · cerrajería alajuela 390 · cerrajería 24 horas 320 · cerrajería cartago 320 · cerrajería costa rica 320 · motores para portones eléctricos 210 · cerrajería a domicilio 140 · apertura de carros 90 · copia de llaves 90 · reparación de portones eléctricos 90 · cerrajero heredia 90 · cerrajería automotriz 70 · mantenimiento de portones eléctricos 40 · copia de llave con chip 30 · llaves con chip 20 · apertura de cajas fuertes / abrir caja fuerte 10 · "rejas automáticas" ≈ 0 (en el sitio se usa "portones eléctricos", que es lo que se busca). Plan guardado en el Planificador ("Plan del nov 22, 2026").
+- Cambios (sin tocar el diseño): título → **"Cerrajería 24 Horas a Domicilio en Costa Rica | Arrieta"** (55 caracteres); descripción → **"Cerrajería a domicilio 24/7 en San José, Heredia, Alajuela y Cartago: apertura de casas y carros, cajas fuertes, llaves con chip y portones eléctricos."** (151); Hero "casas, vehículos" → "casas, **carros**"; servicio automotriz "Apertura de vehículos" → "**Apertura de carros**"; portones "Motores" → "**Motores para portones**" con descripción "motores para portones eléctricos…"; JSON-LD `OfferCatalog` sin el "Portones eléctricos" duplicado (la categoría usa los servicios detallados de portones).
+- "cerrajería cerca de mí" (la búsqueda más grande) depende sobre todo del Perfil de Negocio y el mapa → paso 10. El siguiente salto de SEO es crear páginas por zona/servicio (Heredia, San José, Alajuela, Cartago, portones eléctricos) — requiere aprobación de diseño.
 
 #### Auditoría del sitio (2026-11-21)
 

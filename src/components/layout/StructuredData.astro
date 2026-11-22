@@ -33,17 +33,16 @@ const offerCatalog = {
     ...serviceCategories.map((category) => ({
       '@type': 'OfferCatalog',
       name: category.label,
-      itemListElement: category.services.map((service) => offer(service)),
+      // The gates category has its own detailed section; its services are listed once, with descriptions.
+      itemListElement:
+        category.id === 'portones-electricos'
+          ? gateServices.map((service) => offer(service.title, service.description))
+          : category.services.map((service) => offer(service)),
     })),
     {
       '@type': 'OfferCatalog',
       name: 'Servicios especializados',
       itemListElement: specialtyServices.map((service) => offer(service.title, service.description)),
-    },
-    {
-      '@type': 'OfferCatalog',
-      name: 'Portones eléctricos',
-      itemListElement: gateServices.map((service) => offer(service.title, service.description)),
     },
   ],
 };

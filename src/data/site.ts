@@ -34,8 +34,9 @@ export const coverage = {
 } as const;
 
 export const seo = {
-  title: 'Cerrajería 24 Horas en Costa Rica | Cerrajería Arrieta',
-  description: `Cerrajeros a domicilio 24/7 en la GAM: apertura de casas y autos, cajas fuertes, llaves con chip y portones eléctricos. Más de ${business.yearsOfExperience} años de experiencia.`,
+  title: 'Cerrajería 24 Horas a Domicilio en Costa Rica | Arrieta',
+  description:
+    'Cerrajería a domicilio 24/7 en San José, Heredia, Alajuela y Cartago: apertura de casas y carros, cajas fuertes, llaves con chip y portones eléctricos.',
   locale: 'es_CR',
   language: 'es-CR',
   themeColor: '#0a0a0b',
