@@ -342,3 +342,110 @@ La prioridad siempre será:
 El proyecto debe sentirse diseñado por un estudio digital profesional, manteniendo una experiencia rápida, accesible, minimalista y comercialmente efectiva.
 
 Cada sección debe estar completamente revisada y aprobada antes de avanzar a la siguiente.
+
+---
+
+## 13. Marketing digital — plan de trabajo (iniciado 2026-11-21)
+
+Objetivo: conseguir **llamadas y mensajes de WhatsApp** de clientes reales en Costa Rica con Google Ads, SEO local y el Perfil de Negocio de Google, midiendo cada contacto.
+
+Este plan replica el proceso que ya se completó para otro cliente (Cerrajería24siete, proyecto aparte). **Solo se reutiliza el método: nunca copiar datos, cuentas, IDs, presupuestos ni resultados de ese negocio.** Todo dato de Arrieta debe salir de este repositorio, de su sitio publicado o de sus propias cuentas.
+
+### Reglas
+
+- No inventar servicios, zonas, años, garantías ni volúmenes/CPC: usar el Planificador de palabras clave o datos reales de la cuenta.
+- No modificar código, publicar anuncios, cambiar presupuestos ni gastar dinero sin autorización explícita del dueño.
+- No ingresar contraseñas ni datos de pago: cuando Google pida "Confirma tu identidad" o haya que recargar saldo, lo hace el dueño.
+- Proyecciones siempre como estimaciones, nunca como resultados garantizados.
+
+### Datos de Arrieta conocidos (verificar antes de usar)
+
+- Sitio: https://cerrajeriaarrieta24horas.com (Astro en Vercel). Teléfono/WhatsApp +506 7204 1289. Correo y Facebook en `src/data/site.ts`.
+- Secciones con ancla (posibles páginas de destino de Ads): `#inicio`, `#empresa`, `#servicios`, `#especialidades`, `#emergencias`, `#portones`, `#cobertura`, `#nosotros`, `#contacto`.
+- Ya existe: `vercel.json` con 301 de las URLs del WordPress viejo; sitemap propio en `/sitemap.xml`; JSON-LD `Locksmith` + `FAQPage`.
+- **Medición: no hay ninguna** (sin Google Tag Manager, GA4 ni Vercel Analytics) al 2026-11-17.
+- Perfil de Negocio: "Cerrajería Arrieta 24 Horas Servicio a domicilio", 5.0 con 2 reseñas, abierto 24 h; aparece en el mapa para "cerrajero 24 horas" y "cerrajero a domicilio" (búsqueda hecha desde Belén, Heredia).
+- Search Console: propiedad de dominio verificada (TXT en Vercel DNS) con la cuenta de Google abierta en Chrome; sitemap enviado y `/` con indexación solicitada el 2026-10-25. Ojo: la cuenta usada para Cerrajería24siete **no tiene acceso**.
+- **Correo roto:** el dominio no tiene registros MX (2026-11-21); `servicioalcliente@` aparece en el sitio y en el JSON-LD pero no recibe correos.
+- Google Ads: en la cuenta de Google de Cerrajería24siete aparece "Ronny Arrieta" (342-689-4723) **Cancelada**. La cuenta real con historial es **708-414-4545**, en la cuenta de Google del dueño (ronnyarrieta1966@…), que también tiene 3 administradoras vacías (515-594-3656, 471-669-6980 y 312-750-4025; esta última solo con "adwords 1" 342-575-9050, sin datos). Ver "Auditoría de Google Ads".
+- Correo de contacto del sitio cambiado a `pamelac2398@gmail.com` el 2026-11-21 (pedido por el dueño).
+
+### ⚠️ Antes de anunciar: política de "ventaja desleal"
+
+Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostrar más de un anuncio **del mismo negocio** en la misma posición de anuncio. Si Arrieta y Cerrajería24siete son negocios independientes (dueños, teléfonos y operación distintos) pueden anunciar ambos; si son el mismo negocio o están relacionados, confirmar con el dueño y revisar la política de Google antes de lanzar campañas. Nunca usar la misma cuenta de Ads para los dos.
+
+### Orden de trabajo (el que funcionó)
+
+1. **Auditoría** del sitio publicado (Lighthouse, encabezados, enlaces `tel:`/`wa.me`, datos estructurados) y de la cuenta de Ads si tiene historial (términos de búsqueda, palabras clave, conversiones, ubicaciones, dispositivos, facturación, usuarios con acceso).
+2. **Search Console**: propiedad de dominio (registro TXT en el DNS de Vercel, nombre vacío) → enviar el sitemap → quitar sitemaps viejos de WordPress → solicitar indexación de `/`.
+3. **SEO on-page**: título, descripción y textos con las búsquedas reales de Search Console/Planificador ("cerrajería 24 horas", "cerrajería a domicilio", "apertura de carros"…), sin cambiar el diseño.
+4. **Conversiones en Google Ads** (Objetivos → Crear acción → Sitio web → manual): "Clic en WhatsApp (sitio)" y "Clic en llamar (sitio)", categoría Contacto, acción principal, mismo valor, recuento "Una", **sin** conversiones avanzadas. Pasar "Vista de página" u otras viejas a **secundaria**.
+5. **Google Tag Manager**: contenedor web nuevo con Google tag (AW-…), vinculador de conversiones y dos etiquetas de conversión de Ads; activadores "Clic – Solo enlaces → Algunos clics": Click URL contiene `tel:` / contiene `wa.me`. Publicar.
+6. **Sitio**: snippet de GTM en `src/layouts/BaseLayout.astro` (head + noscript), ID centralizado en un archivo de `src/data/`. Validar (`astro check` + build) y probar con Chrome headless interceptando (sin enviar) las solicitudes a `googleadservices.com`: cada botón debe disparar **solo** su etiqueta.
+7. **Estructura de Ads** (Búsqueda, solo Red de Búsqueda, palabras en frase/exacta, sin amplia hasta tener ~30 conversiones/mes): grupos por intención (general/cerca de mí, 24 h, a domicilio, zonas, automotriz, cerraduras y cajas fuertes; portones en campaña aparte si aplica), cada uno con su anuncio responsivo hacia su sección.
+8. **Configuración de campañas**: presupuesto aprobado por el dueño, ubicación por **presencia** (no "presencia o interés"), revisar exclusiones heredadas, ajustes de oferta por provincia si el dueño prioriza zonas, tope de CPC según el Planificador, Maximizar clics hasta tener datos de conversión.
+9. **Negativas** (walmart, epa, el lagar, ferretería, cómo, tutorial, curso, empleo, gratis, juego…) y **recursos**: vínculos a sitio a cada sección, textos destacados, fragmentos "Servicios", recurso de llamada.
+10. **Perfil de Negocio**: descripción completa (≤750), sitio con `?utm_source=google&utm_medium=organic&utm_campaign=gbp`, áreas de servicio, horario, servicios personalizados, categorías, responder reseñas (con visto bueno del dueño), revisar "Personas y acceso".
+11. **Redes** verificadas en los datos del sitio (footer, menú móvil y `sameAs`).
+12. **Documentar** todo aquí (cuenta, IDs, presupuestos, fecha de revisión) y revisar resultados ~7 días después.
+
+### Lecciones técnicas (ahorran horas)
+
+- **Números de desvío de Google no existen en Costa Rica**: no se mide la duración de llamadas; solo clics en `tel:` y WhatsApp. Desactivar "informe de llamadas" en el recurso de llamada.
+- **Política "Local services"**: muchas palabras con "cerrajero" se rechazan en carga masiva. En Costa Rica están permitidas, pero hay que agregarlas desde la interfaz marcando **"Solicitar una excepción"**.
+- **Carga masiva de Ads** (Herramientas → Acciones masivas → Cargas, siempre "Vista previa" antes de "Aplicar"):
+  - La columna **Campaign ID** es obligatoria; la concordancia va en la columna Keyword: `"frase"` o `[exacta]`.
+  - Recursos: `Row Type` = `Sitelink` / `Callout` / `Structured snippet`, `Action` = Add, `Asset action` = Create new, `Level` = Campaign (`Callout extension` ya no es válido). Fragmentos: header `Services`, valores separados por `;`.
+  - Las negativas se agregan mejor desde la interfaz (Palabras clave negativas → +).
+  - Límites: títulos ≤30, descripciones ≤90, rutas ≤15, textos destacados ≤25, vínculos ≤25/≤35.
+- **Importar contenedor en GTM**: el JSON necesita `accountId`, `containerId` y el bloque `container` (si no, "No se encuentra"); los filtros de activadores (`autoEventFilter`) **no se importan**, hay que ponerlos a mano y volver a publicar.
+- **Google pide "Confirma tu identidad"** al guardar presupuestos o quitar usuarios: lo completa el dueño y luego se repite la acción.
+- Activar una campaña detenida (inicio de gasto) puede quedar bloqueado por seguridad: pedir al dueño que la active.
+- Si las capturas del navegador se congelan, la interfaz de Google Ads se puede leer/operar con JavaScript en la página; el editor del Perfil de Negocio necesita capturas.
+- Un sitio de una sola página limita el SEO: las páginas por servicio/zona son el siguiente paso natural (ajustar `vercel.json` si se crean).
+
+### Estado
+
+- [x] Paso 1 — Auditoría (sitio y Google Ads, 2026-11-21)
+- [x] Paso 2 — Search Console (2026-10-25; no había sitemaps viejos que quitar)
+- [ ] Paso 3 — SEO on-page
+- [ ] Pasos 4–6 — Medición (conversiones, GTM, sitio)
+- [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
+- [ ] Paso 10 — Perfil de Negocio
+- [ ] Paso 11 — Redes
+- [ ] Paso 12 — Documentación y fecha de revisión
+
+#### Cambios en Google Ads (2026-11-21, con autorización del dueño)
+
+- Campaña oficial: **Cerrajeriaarrieta24horas** (ID 20446500889). "Campaña de Búsqueda #1" quitada; "Portones OneSourceADS" renombrada a **Portones Eléctricos** (sin tocar su contenido; el dueño la quiere **detenida** por ahora, 2026-11-22).
+- Ubicación: Presencia (antes Presencia o interés); San José (ciudad) → provincia de San José; se agregó Cartago. Tope de CPC USD 1,00 y Maximizar clics sin cambios.
+- 2026-11-22 (pedido del dueño: "enfoque en SJ, Heredia, Alajuela y Cartago; los demás también, pero menos"): **presupuesto USD 45 → USD 20/día**; se quitaron las exclusiones de Puntarenas, Guanacaste, Limón y San Isidro de El General y se agregaron esas 3 provincias como ubicaciones con **ajuste de oferta -50 %** (las 4 provincias principales sin ajuste). Quedan 15 exclusiones, todas de otros países.
+- Grupos (todos habilitados): `Cerrajeriaarrieta24horas` (general, con sus 2 anuncios responsivos "Excelente"), `Emergencias 24 Horas` → `/#emergencias`, `A Domicilio y Zonas GAM` → `/#cobertura`, `Automotriz` → `/#servicios`, `Cajas Fuertes y Llaves` → `/#especialidades`; cada grupo nuevo con su anuncio responsivo (14–15 títulos, 4 descripciones, sin teléfono en el texto).
+- 77 palabras clave: 64 nuevas en frase/exacta (35 con excepción de "Servicios locales" solicitada, en revisión) y 12 amplias viejas detenidas.
+- Detenido el anuncio de llamada viejo con el **8501 0505** (el dueño confirmó el 2026-11-22 que ya no lo usa; no volver a usarlo); el de display ya estaba detenido.
+- Recursos: quitados 19 vínculos viejos (incluía "Guía de cómo llegar", aunque el negocio no tiene local), 8 textos destacados y 4 fragmentos con errores; creados 6 vínculos a secciones, 8 textos destacados, 1 fragmento "Servicios" y llamada **+506 7204 1289** (antes no había ninguna).
+- Negativas: a las 12 existentes se sumaron 32 (walmart, epa, el lagar, ferretería, tutorial, cómo hacer, gratis, juegos, pdf, videos, ganzúa, amazon, mercado libre, temu, vacante…).
+- Archivos de carga usados: generados con un script; no se guardan en el repo.
+
+#### Auditoría del sitio (2026-11-21)
+
+- Lighthouse en producción: móvil 99/100/100/100 (LCP 1,8 s, CLS 0); escritorio 100 en todo.
+- Un H1, `lang="es-CR"`, canonical, OG y JSON-LD (`Locksmith` + `FAQPage` de 10 preguntas) correctos; 18 imágenes, todas con `alt`.
+- Contacto: 10 enlaces `tel:+50672041289` y 19 `wa.me/50672041289` (cada servicio con su mensaje). No hay medición instalada.
+- 301 del WordPress viejo funcionan; robots y sitemap correctos. Pendientes menores: `OfferCatalog` repite "Portones eléctricos"; en los botones "Llamar" el `aria-label` no incluye el texto visible (aviso de Lighthouse).
+- Search Console (20-ago → 19-nov): 28 clics, 2.170 impresiones, CTR 1,3 %, posición 10,8; 90 % de impresiones en móvil. Consultas con más impresiones: "cerrajería en heredia" (55, pos. 2,2), "arrieta cerrajeros" (48), "mantenimiento rejas automáticas" (43, pos. 66), "cerrajero a domicilio heredia" (41, pos. 1,7), "cerrajería heredia 24 horas" (34, pos. 1,2), "cerrajero/cerrajería a domicilio" (34/33), "cerrajería cerca de mí" (27), "cerrajería 24 horas" (24–27, pos. 16–40). Heredia es la zona más fuerte; "24 horas" y "portones/rejas" rankean bajo.
+- Indexación: 21 indexadas y 68 sin indexar (14 redirecciones, 10 noindex, 5 404, 1 403, 38 rastreadas sin indexar), casi todo URLs del WordPress viejo en transición.
+
+#### Auditoría de Google Ads — cuenta 708-414-4545 (2026-11-21)
+
+- Historial total (oct 2021 → nov 2026): USD 26.574, 84.024 clics y 3,53 M de impresiones. Sin campañas activas.
+- Campañas:
+  - **Cerrajeriaarrieta24horas** (Búsqueda, desde 10-ago-2023, USD 45/día, Maximizar clics, SJ/Alajuela/Heredia con 19 exclusiones). Gastó USD 22.712 en total: 2024 USD 5.403, 2025 USD 9.087, 2026 USD 6.650. Ritmo de ~USD 1.000/mes de dic-2025 a jun-2026, bajó en julio, casi nada en ago–oct. Gastó USD 86 del 1 al 10 de nov y el dueño la detuvo el 10-nov-2026 desde la app.
+  - **Campaña de Búsqueda #1** (2022–2023, USD 34,65/día): USD 2.107, 3.518 clics.
+  - **Llama a Expertos en Cerrajería** (Inteligente, 2021–2022, quitada): USD 1.754, 3.394 clics y 408 conversiones; fue la única con conversiones.
+  - **Portones OneSourceADS** (Búsqueda, creada 28-ago-2023, USD 20/día, Maximizar clics, SJ/Alajuela/Heredia): casi sin uso, con 7 impresiones y USD 0,80 en total. Tiene 1 grupo, 10 palabras clave amplias de mantenimiento/reparación de portones y 1 anuncio responsivo (calidad "Excelente") hacia el dominio.
+- Problemas: **0 conversiones medidas desde 2023** (solo existe "Vistas de página", sin datos). Palabras clave sobre todo en concordancia **amplia** (CPC ~USD 0,87). En los últimos 12 meses, **USD 2.140 (27 %) se fueron a la Red de Display** (1,04 M de impresiones y 21.003 clics a ~USD 0,10, CTR 2 %), contra USD 5.703 en Búsqueda (6.577 clics, CTR 8,4 %). Hoy la campaña ya solo tiene Búsqueda.
+- Facturación: prepago manual con Visa; saldo USD 24,39 ("fondos agotándose"); último pago 4-nov-2026, USD 45.
+- Accesos: el 18-nov-2026 el dueño quitó a un administrador `one…@gmail.com` (probablemente de OneSourceADS).
+- Palabras clave con más gasto en 12 meses: "cerrajeria cerrajero" (frase, USD 1.814), "cerrajería a domicilio" (USD 782), "cerrajero de autos" (USD 670), "servicio de cerrajería" (USD 490), "cerrajería vehicular" (USD 473), "cerrajería cerca de mi" (USD 433).
+- Dato para presupuestar: en 12 meses la Búsqueda solo absorbió ~USD 475/mes (~USD 16/día) con tope de CPC USD 1,00, aunque el presupuesto era USD 45/día; el resto se iba a Display.
