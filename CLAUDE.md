@@ -421,6 +421,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - Campaña oficial: **Cerrajeriaarrieta24horas** (ID 20446500889). "Campaña de Búsqueda #1" quitada; "Portones OneSourceADS" renombrada a **Portones Eléctricos** (sin tocar su contenido; el dueño la quiere **detenida** por ahora, 2026-11-22).
 - Ubicación: Presencia (antes Presencia o interés); San José (ciudad) → provincia de San José; se agregó Cartago. Tope de CPC USD 1,00 y Maximizar clics sin cambios.
 - 2026-11-22 (pedido del dueño: "enfoque en SJ, Heredia, Alajuela y Cartago; los demás también, pero menos"): **presupuesto USD 45 → USD 20/día**; se quitaron las exclusiones de Puntarenas, Guanacaste, Limón y San Isidro de El General y se agregaron esas 3 provincias como ubicaciones con **ajuste de oferta -50 %** (las 4 provincias principales sin ajuste). Quedan 15 exclusiones, todas de otros países.
+- 2026-11-22 (segundo pedido del dueño, "el puje", una sola campaña): ajustes de oferta por ubicación → **San José +35 %, Heredia +35 %, Alajuela +27 %, Cartago / Puntarenas / Guanacaste / Limón +3 %** (reemplaza los -50 % anteriores; Cartago pasa al grupo "resto"). Ojo: con Maximizar clics y tope de CPC USD 1,00, el tope limita la puja final, así que la diferencia real entre zonas puede ser menor que los porcentajes.
 - Grupos (todos habilitados): `Cerrajeriaarrieta24horas` (general, con sus 2 anuncios responsivos "Excelente"), `Emergencias 24 Horas` → `/#emergencias`, `A Domicilio y Zonas GAM` → `/#cobertura`, `Automotriz` → `/#servicios`, `Cajas Fuertes y Llaves` → `/#especialidades`; cada grupo nuevo con su anuncio responsivo (14–15 títulos, 4 descripciones, sin teléfono en el texto).
 - 77 palabras clave: 64 nuevas en frase/exacta (35 con excepción de "Servicios locales" solicitada, en revisión) y 12 amplias viejas detenidas.
 - Detenido el anuncio de llamada viejo con el **8501 0505** (el dueño confirmó el 2026-11-22 que ya no lo usa; no volver a usarlo); el de display ya estaba detenido.
@@ -441,7 +442,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 
 Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Analytics y todo lo demás, **por pasos y en cada paso commit y push**".
 
-- Hecho: presupuesto USD 20/día + zonas (commit `f50dcd6`), paso 4 conversiones (commit `166a07a`).
+- Hecho: presupuesto USD 20/día + zonas (commit `f50dcd6`), paso 4 conversiones (commit `166a07a`), ajustes de puja por provincia SJ/Heredia +35 %, Alajuela +27 %, resto +3 %.
 - **GA4 (en curso):** el dueño aceptó los Términos de Google Analytics el 2026-11-22. Creada la cuenta **"Cerrajería Arrieta 24 Horas"** con la propiedad **"cerrajeriaarrieta24horas.com"** (zona horaria Costa Rica GMT-6, USD, sector "Casa y jardín", tamaño "Pequeña", objetivos "Generar oportunidades de venta" + "Conocer el tráfico web"; opciones de compartir datos **desmarcadas**). El asistente quedó en el paso 5 "Comenzar a recoger datos": **falta crear el flujo de datos Web** (`https://cerrajeriaarrieta24horas.com`) y anotar el **ID de medición `G-…`**. No instalar la etiqueta que propone GA directamente: va por GTM.
 - **Siguiente, en orden:**
   1. GA4: crear el flujo Web → anotar `G-…` aquí → (opcional) vincular GA4 con Google Ads 708-414-4545 → commit/push de la documentación.
