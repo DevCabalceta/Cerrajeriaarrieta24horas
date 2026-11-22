@@ -413,7 +413,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - [x] Paso 5 — GA4 + GTM publicados (2026-11-22)
 - [x] Paso 6 — GTM instalado en el sitio y probado (2026-11-22)
 - [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
-- [x] Paso 10 — Perfil de Negocio (2026-11-22; falta decisión del dueño sobre el nombre)
+- [x] Paso 10 — Perfil de Negocio (2026-11-22)
 - [ ] Paso 11 — Redes
 - [ ] Paso 12 — Documentación y fecha de revisión
 
@@ -489,7 +489,7 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
   - **Categorías adicionales**: "Servicio de duplicación de llaves" y "Cerrajero de emergencia" (principal sigue "Cerrajero"). Se descartaron categorías de tiendas/fábricas de puertas por no describir el negocio.
   - **Servicios**: + Instalación, apertura y reparación de cerraduras de cajas de seguridad; Instalación de cerraduras; Reconfiguración de cerraduras; Reparación de cerraduras y afines; Reprogramación de llave digital y remota para automóviles; y personalizados: Extracción de llaves quebradas; Amaestramiento de cerraduras y candados; Mantenimiento y reparación de portones eléctricos; Venta e instalación de motores para portones eléctricos; Venta y programación de controles para portones; Copias de todo tipo de llaves, con o sin muestra.
   - Horario: ya era 24 h todos los días (sin cambios). Aviso "Google actualizó tus opciones de mensajería" **no aceptado** (decisión del dueño).
-- **Pendiente (decisión del dueño):** el nombre del perfil es "Cerrajería Arrieta 24 Horas *Servicio a domicilio*". Las directrices de Google piden el nombre real del negocio sin descriptores; agregar palabras puede causar suspensión. Recomendación: cambiarlo a "Cerrajería Arrieta 24 Horas" (como en el sitio), sabiendo que un cambio de nombre puede pedir **reverificación**. No se tocó.
+- **Nombre** (aprobado por el dueño el 2026-11-22): "Cerrajería Arrieta 24 Horas Servicio a domicilio" → **"Cerrajería Arrieta 24 Horas"** (como en el sitio; las directrices de Google no permiten descriptores en el nombre). Quedó pendiente de revisión de Google; no pidió reverificación al guardar. Si Google la pide después, la hace el dueño.
 - Sugerido: subir fotos reales de trabajos (el perfil casi no tiene) y pedir reseñas con el enlace "Consigue más opiniones".
 
 #### Auditoría del sitio (2026-11-21)
