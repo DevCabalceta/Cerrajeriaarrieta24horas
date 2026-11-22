@@ -412,9 +412,9 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - [x] Paso 4 — Conversiones en Google Ads (2026-11-22)
 - [x] Paso 5 — GA4 + GTM publicados (2026-11-22)
 - [x] Paso 6 — GTM instalado en el sitio y probado (2026-11-22)
-- [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
+- [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día y pujas por provincia (2026-11-22); medición lista. **Sigue detenida**: falta que el dueño recargue saldo y la active
 - [x] Paso 10 — Perfil de Negocio (2026-11-22)
-- [ ] Paso 11 — Redes
+- [~] Paso 11 — Redes: Facebook ya está en el sitio (footer, menú móvil, `sameAs`) y en el Perfil de Negocio; falta confirmar con el dueño si tiene otras redes (Instagram, TikTok…)
 - [ ] Paso 12 — Documentación y fecha de revisión
 
 #### Cambios en Google Ads (2026-11-21, con autorización del dueño)
@@ -460,17 +460,24 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - Prueba con Chrome headless sobre `astro preview`, interceptando (sin enviar) todas las solicitudes a Google: carga → page_view de GA4/Ads; clic en `tel:` → **solo** la conversión `AEvSCMqel70dEPvnnZQo` + `phone_click`; clic en `wa.me` → **solo** `V4V5CM-dl70dEPvnnZQo` + `whatsapp_click`; enlace interno → nada; **deslizar el slider de WhatsApp** (`SlideToContact`) → una sola conversión de WhatsApp (tras el arrastre el navegador emite un `click` en el `<a>`; el componente evita la navegación duplicada y GTM igual lo registra porque "Comprobar validación" está desactivado — no activarlo).
 - En producción desde el commit `eb58a6e`. Lighthouse móvil con GTM (bloqueando las solicitudes de recogida de Google): **91 / 100 / 100 / 100** (LCP 2,0 s, TBT 370 ms, CLS 0); antes de GTM era 99. Si hace falta recuperar rendimiento: cargar GTM tras el evento `load` (riesgo: perder visitas que rebotan muy rápido).
 
-#### Punto de reanudación (pausa del 2026-11-22)
+#### Punto de reanudación (actualizado 2026-11-22, fin de la sesión)
 
-Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Analytics y todo lo demás, **por pasos y en cada paso commit y push**".
+Forma de trabajo pedida por el dueño: **por pasos y en cada paso commit y push**, documentando aquí. Para retomar: "sigamos con el punto de reanudación del plan de marketing".
 
-- Hecho: presupuesto USD 20/día + zonas (commit `f50dcd6`), paso 4 conversiones (commit `166a07a`), ajustes de puja por provincia SJ/Heredia +35 %, Alajuela +27 %, resto +3 %.
-- **GA4 (en curso):** el dueño aceptó los Términos de Google Analytics el 2026-11-22. Creada la cuenta **"Cerrajería Arrieta 24 Horas"** con la propiedad **"cerrajeriaarrieta24horas.com"** (zona horaria Costa Rica GMT-6, USD, sector "Casa y jardín", tamaño "Pequeña", objetivos "Generar oportunidades de venta" + "Conocer el tráfico web"; opciones de compartir datos **desmarcadas**). El asistente quedó en el paso 5 "Comenzar a recoger datos": **falta crear el flujo de datos Web** (`https://cerrajeriaarrieta24horas.com`) y anotar el **ID de medición `G-…`**. No instalar la etiqueta que propone GA directamente: va por GTM.
-- **Siguiente, en orden:**
-  1. ~~GA4: flujo Web + vínculo con Ads~~ — hecho, ver "GA4 (2026-11-22)".
-  2. ~~Paso 5, GTM~~ — hecho, ver "Google Tag Manager (paso 5)". Pendiente: marcar `whatsapp_click` y `phone_click` como eventos clave en GA4.
-  3. ~~Paso 6, sitio~~ — hecho, ver "Sitio (paso 6)". Pendiente: marcar `whatsapp_click` y `phone_click` como **eventos clave** en GA4 (Administrar → Eventos → estrella) cuando aparezcan tras los primeros clics reales (24–48 h).
-  4. Después: el dueño recarga saldo (quedan USD 24,39) y activa la campaña.
+**Hecho el 2026-11-21/22** (detalle en las subsecciones de abajo):
+- Google Ads: campaña oficial reestructurada, USD 20/día, pujas SJ/Heredia +35 %, Alajuela +27 %, Cartago/Puntarenas/Guanacaste/Limón +3 %; Portones Eléctricos detenida; anuncio del 8501 0505 detenido. Conversiones "Clic en WhatsApp/llamar (sitio)" creadas.
+- GA4 `G-X9YEC5K08W` (vinculado con Ads) + GTM `GTM-WNPN8FKS` publicado (versión 2) + instalado en el sitio y probado (commit `eb58a6e`).
+- SEO on-page con datos del Planificador (commit `0a51333`).
+- Perfil de Negocio: descripción, sitio con UTM, Facebook, zonas (4 provincias), categorías, servicios y nombre "Cerrajería Arrieta 24 Horas".
+
+**Pendiente, en orden:**
+1. **Dueño:** recargar saldo de Google Ads (quedaban USD 24,39) y **activar la campaña** Cerrajeriaarrieta24horas (ID 20446500889). Si Google pide "Confirma tu identidad", lo hace el dueño.
+2. **Verificar** (desde ~2026-11-23) que Google aprobó los cambios pendientes del Perfil de Negocio (nombre, zonas, sitio con UTM, Facebook, servicios) y que no pidió reverificación.
+3. **GA4:** cuando lleguen los primeros clics reales (24–48 h con tráfico), marcar `whatsapp_click` y `phone_click` como **eventos clave** (Administrar → Visualización de datos → Eventos → estrella). Antes de recibir datos GA no permite marcarlos.
+4. **Google Ads:** revisar que las 35 palabras con excepción de "Servicios locales" y los anuncios nuevos quedaron aprobados; revisar en "Conversiones" que las acciones pasen de "Esperando conversiones" a "Registrando".
+5. **Paso 11:** preguntar al dueño si tiene otras redes además de Facebook y, si las hay, agregarlas a `src/data/site.ts` (`social`) y al Perfil de Negocio.
+6. **Paso 12:** ~7 días después de activar la campaña, revisar resultados (términos de búsqueda → nuevas negativas, CPC real vs. tope USD 1,00, gasto por provincia, conversiones por grupo) y anotar aquí.
+7. **Opcionales (requieren aprobación):** páginas por zona/servicio para SEO (Heredia, San José, Alajuela, Cartago, portones eléctricos); cargar GTM tras `load` si se quiere recuperar rendimiento (Lighthouse móvil 91 con GTM); pulir y reactivar la campaña "Portones Eléctricos" cuando el dueño quiera; subir fotos reales al Perfil de Negocio y pedir reseñas.
 
 #### SEO on-page (paso 3, 2026-11-22)
 
