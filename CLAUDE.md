@@ -409,7 +409,8 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - [x] Paso 1 — Auditoría (sitio y Google Ads, 2026-11-21)
 - [x] Paso 2 — Search Console (2026-10-25; no había sitemaps viejos que quitar)
 - [ ] Paso 3 — SEO on-page
-- [ ] Pasos 4–6 — Medición (conversiones, GTM, sitio)
+- [x] Paso 4 — Conversiones en Google Ads (2026-11-22)
+- [ ] Pasos 5–6 — GTM + GA4 y sitio
 - [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
 - [ ] Paso 10 — Perfil de Negocio
 - [ ] Paso 11 — Redes
@@ -426,6 +427,15 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - Recursos: quitados 19 vínculos viejos (incluía "Guía de cómo llegar", aunque el negocio no tiene local), 8 textos destacados y 4 fragmentos con errores; creados 6 vínculos a secciones, 8 textos destacados, 1 fragmento "Servicios" y llamada **+506 7204 1289** (antes no había ninguna).
 - Negativas: a las 12 existentes se sumaron 32 (walmart, epa, el lagar, ferretería, tutorial, cómo hacer, gratis, juegos, pdf, videos, ganzúa, amazon, mercado libre, temu, vacante…).
 - Archivos de carga usados: generados con un script; no se guardan en el repo.
+
+#### Medición (paso 4, 2026-11-22)
+
+- ID de conversión de Google Ads: **AW-10779849723**.
+- Acciones nuevas (Sitio web, manual con código, categoría **Contacto**, acción **principal**, valor fijo USD 1, recuento **Una**, ventana 90 días, atribución basada en datos), incluidas en los objetivos a nivel de cuenta:
+  - **Clic en WhatsApp (sitio)** → etiqueta `V4V5CM-dl70dEPvnnZQo`
+  - **Clic en llamar (sitio)** → etiqueta `AEvSCMqel70dEPvnnZQo`
+- "Vista de página (Carga de página cerrajeriaarrieta24horas.com/)" pasada a **secundaria**. Las acciones viejas de Smart campaign / Business profile se dejaron como estaban (son de Google y no se pueden editar).
+- No se activó la fuente "Conversiones de llamadas telefónicas" (no hay números de desvío en Costa Rica).
 
 #### Auditoría del sitio (2026-11-21)
 
