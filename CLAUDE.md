@@ -458,6 +458,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 
 - `src/data/analytics.ts` (`gtmId`) + snippet de GTM en `src/layouts/BaseLayout.astro` (script en el `<head>` y `<noscript>` al inicio del `<body>`), **solo en builds de producción** (`import.meta.env.PROD`), así `npm run dev` no manda datos.
 - Prueba con Chrome headless sobre `astro preview`, interceptando (sin enviar) todas las solicitudes a Google: carga → page_view de GA4/Ads; clic en `tel:` → **solo** la conversión `AEvSCMqel70dEPvnnZQo` + `phone_click`; clic en `wa.me` → **solo** `V4V5CM-dl70dEPvnnZQo` + `whatsapp_click`; enlace interno → nada; **deslizar el slider de WhatsApp** (`SlideToContact`) → una sola conversión de WhatsApp (tras el arrastre el navegador emite un `click` en el `<a>`; el componente evita la navegación duplicada y GTM igual lo registra porque "Comprobar validación" está desactivado — no activarlo).
+- En producción desde el commit `eb58a6e`. Lighthouse móvil con GTM (bloqueando las solicitudes de recogida de Google): **91 / 100 / 100 / 100** (LCP 2,0 s, TBT 370 ms, CLS 0); antes de GTM era 99. Si hace falta recuperar rendimiento: cargar GTM tras el evento `load` (riesgo: perder visitas que rebotan muy rápido).
 
 #### Punto de reanudación (pausa del 2026-11-22)
 
@@ -468,7 +469,7 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
 - **Siguiente, en orden:**
   1. ~~GA4: flujo Web + vínculo con Ads~~ — hecho, ver "GA4 (2026-11-22)".
   2. ~~Paso 5, GTM~~ — hecho, ver "Google Tag Manager (paso 5)". Pendiente: marcar `whatsapp_click` y `phone_click` como eventos clave en GA4.
-  3. ~~Paso 6, sitio~~ — hecho, ver "Sitio (paso 6)". Pendiente: tras el deploy, marcar `whatsapp_click` y `phone_click` como eventos clave en GA4 (aparecen cuando llegan datos) y revisar Lighthouse.
+  3. ~~Paso 6, sitio~~ — hecho, ver "Sitio (paso 6)". Pendiente: marcar `whatsapp_click` y `phone_click` como **eventos clave** en GA4 (Administrar → Eventos → estrella) cuando aparezcan tras los primeros clics reales (24–48 h).
   4. Después: el dueño recarga saldo (quedan USD 24,39) y activa la campaña.
 
 #### Auditoría del sitio (2026-11-21)
