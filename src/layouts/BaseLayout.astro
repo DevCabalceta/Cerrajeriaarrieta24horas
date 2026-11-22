@@ -5,10 +5,13 @@ import SEO, { type Props as SeoProps } from '@/components/layout/SEO.astro';
 import StructuredData from '@/components/layout/StructuredData.astro';
 import SiteFooter from '@/components/layout/SiteFooter.astro';
 import Navbar from '@/components/interactive/navbar/Navbar';
+import { analytics } from '@/data/analytics';
 
 type Props = SeoProps;
 
 const { title, description, image } = Astro.props;
+const { gtmId } = analytics;
+const loadTagManager = import.meta.env.PROD;
 ---
 
 <!doctype html>
@@ -16,6 +19,22 @@ const { title, description, image } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    {
+      loadTagManager && (
+        <script is:inline define:vars={{ gtmId }}>
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', gtmId);
+        </script>
+      )
+    }
     <script is:inline>document.documentElement.classList.add('js');</script>
     <Font cssVariable="--font-geist" preload />
     <Font cssVariable="--font-geist-mono" />
@@ -26,6 +45,19 @@ const { title, description, image } = Astro.props;
     <StructuredData />
   </head>
   <body id="top">
+    {
+      loadTagManager && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+            title="Google Tag Manager"
+          />
+        </noscript>
+      )
+    }
     <a
       href="#main"
       class="sr-only rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-fg focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"

@@ -411,7 +411,7 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
 - [ ] Paso 3 — SEO on-page
 - [x] Paso 4 — Conversiones en Google Ads (2026-11-22)
 - [x] Paso 5 — GA4 + GTM publicados (2026-11-22)
-- [ ] Paso 6 — Instalar GTM en el sitio y probar
+- [x] Paso 6 — GTM instalado en el sitio y probado (2026-11-22)
 - [~] Pasos 7–9 — Campaña reestructurada (2026-11-21); presupuesto USD 20/día aprobado (plan Recomendado, 2026-11-22). **Sigue detenida**: falta medición y saldo
 - [ ] Paso 10 — Perfil de Negocio
 - [ ] Paso 11 — Redes
@@ -454,6 +454,11 @@ Cerrajería24siete ya anuncia en las mismas búsquedas. Google no permite mostra
   - `Ads - Clic en llamar (sitio)` (10779849723 / `AEvSCMqel70dEPvnnZQo`) y `GA4 - phone_click` → activador **Clic - Llamar (tel)**: Solo enlaces, Click URL contiene `tel:`.
 - El nombre de un activador no puede llevar `:` (la importación falla con "The name contains invalid character").
 
+#### Sitio (paso 6, 2026-11-22)
+
+- `src/data/analytics.ts` (`gtmId`) + snippet de GTM en `src/layouts/BaseLayout.astro` (script en el `<head>` y `<noscript>` al inicio del `<body>`), **solo en builds de producción** (`import.meta.env.PROD`), así `npm run dev` no manda datos.
+- Prueba con Chrome headless sobre `astro preview`, interceptando (sin enviar) todas las solicitudes a Google: carga → page_view de GA4/Ads; clic en `tel:` → **solo** la conversión `AEvSCMqel70dEPvnnZQo` + `phone_click`; clic en `wa.me` → **solo** `V4V5CM-dl70dEPvnnZQo` + `whatsapp_click`; enlace interno → nada; **deslizar el slider de WhatsApp** (`SlideToContact`) → una sola conversión de WhatsApp (tras el arrastre el navegador emite un `click` en el `<a>`; el componente evita la navegación duplicada y GTM igual lo registra porque "Comprobar validación" está desactivado — no activarlo).
+
 #### Punto de reanudación (pausa del 2026-11-22)
 
 Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Analytics y todo lo demás, **por pasos y en cada paso commit y push**".
@@ -463,7 +468,7 @@ Pedido del dueño: "seguir con pasos 4 a 6, poner Google Tag Manager, Google Ana
 - **Siguiente, en orden:**
   1. ~~GA4: flujo Web + vínculo con Ads~~ — hecho, ver "GA4 (2026-11-22)".
   2. ~~Paso 5, GTM~~ — hecho, ver "Google Tag Manager (paso 5)". Pendiente: marcar `whatsapp_click` y `phone_click` como eventos clave en GA4.
-  3. **Paso 6, sitio:** ID de GTM centralizado en `src/data/` y snippet en `src/layouts/BaseLayout.astro` (head + noscript). `npm run build`; probar en Chrome headless que cada botón dispare solo su etiqueta → commit/push.
+  3. ~~Paso 6, sitio~~ — hecho, ver "Sitio (paso 6)". Pendiente: tras el deploy, marcar `whatsapp_click` y `phone_click` como eventos clave en GA4 (aparecen cuando llegan datos) y revisar Lighthouse.
   4. Después: el dueño recarga saldo (quedan USD 24,39) y activa la campaña.
 
 #### Auditoría del sitio (2026-11-21)
